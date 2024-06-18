@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="992.0" fitWidth="760.0" layoutX="-120.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/loginimage.png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <Button id="loginButton" alignment="CENTER" layoutX="802.0" layoutY="644.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="326.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Log In" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Montserrat Thin" size="17.0" />
+         </font>
+      </Button>
+      <PasswordField layoutX="803.0" layoutY="534.0" prefHeight="38.0" prefWidth="326.0" promptText="Password" style="-fx-background-radius: 20;">
+         <font>
+            <Font size="14.0" />
+         </font></PasswordField>
+      <TextField layoutX="803.0" layoutY="461.0" prefHeight="38.0" prefWidth="326.0" promptText="Email" style="-fx-background-radius: 20;">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <ImageView fitHeight="387.0" fitWidth="454.0" layoutX="742.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/medisynclogo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="766.0" layoutY="347.0" text="Log In to your Account">
+         <font>
+            <Font name="Montserrat Thin" size="36.0" />
+         </font>
+      </Label>
+      <Line endX="117.199951171875" layoutX="957.0" layoutY="402.0" startX="-100.0" stroke="#185eaf" strokeWidth="2.0" />
+      <Text layoutX="802.0" layoutY="614.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot Password? " underline="true">
+         <font>
+            <Font name="Montserrat Thin" size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
