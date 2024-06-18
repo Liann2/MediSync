@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1301.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="960.0" prefWidth="1280.0">
+         <children>
+            <AnchorPane prefHeight="960.0" prefWidth="335.0" style="-fx-background-color: #185EAF;">
+               <children>
+                  <Hyperlink layoutX="99.0" layoutY="204.0" text="Dashboard" textFill="WHITE">
+                     <font>
+                        <Font name="Montserrat Thin" size="22.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink layoutX="96.0" layoutY="370.0" text="Register Patient" textFill="WHITE">
+                     <font>
+                        <Font name="Montserrat Thin" size="22.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink layoutX="96.0" layoutY="442.0" text="Patient Queue" textFill="WHITE">
+                     <font>
+                        <Font name="Montserrat Thin" size="22.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink layoutX="97.0" layoutY="275.0" prefHeight="60.0" prefWidth="168.0" text="Appointment &#10;Scheduler" textFill="WHITE">
+                     <font>
+                        <Font name="Montserrat Thin" size="22.0" />
+                     </font>
+                  </Hyperlink>
+                  <ImageView fitHeight="41.0" fitWidth="38.0" layoutX="44.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/dashboard%20white.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="64.0" layoutX="-39.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="40.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/schedule%20white.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="43.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/register%20white.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="51.0" fitWidth="48.0" layoutX="37.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/patientqueue%20white.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="331.0" layoutY="-2.0" prefHeight="963.0" prefWidth="971.0" style="-fx-background-color: white;">
+               <children>
+                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="63.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="47.0" layoutY="71.0" text="Specialist">
+                     <font>
+                        <Font name="System Bold" size="48.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="80.0" layoutY="198.0" text="Orthodopedist">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="172.0" layoutX="33.0" layoutY="729.0" stroke="BLACK" strokeType="INSIDE" width="866.0" />
+                  <Label layoutX="57.0" layoutY="746.0" text="Parents in Line:">
+                     <font>
+                        <Font name="Arial Italic" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="105.0" layoutY="256.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="106.0" layoutY="343.0" text="Remaining Time:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="114.0" layoutY="369.0" text="00:00:00">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="263.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="280.0" layoutY="198.0" text="Dermatologist">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="305.0" layoutY="256.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="306.0" layoutY="343.0" text="Remaining Time:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="314.0" layoutY="369.0" text="00:00:00">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="463.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="496.0" layoutY="197.0" text="Pediatrician">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="505.0" layoutY="256.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="506.0" layoutY="343.0" text="Remaining Time:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="514.0" layoutY="369.0" text="00:00:00">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="663.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="710.0" layoutY="196.0" text="OB-GYN">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="705.0" layoutY="256.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="706.0" layoutY="343.0" text="Remaining Time:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="714.0" layoutY="369.0" text="00:00:00">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="64.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="93.0" layoutY="463.0" text="Cardiologist">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="106.0" layoutY="522.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="107.0" layoutY="609.0" text="Remaining Time:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="115.0" layoutY="635.0" text="00:00:00">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="264.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="281.0" layoutY="467.0" text="Gastroenterologists">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="306.0" layoutY="522.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="315.0" layoutY="635.0" text="00:00:00">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="464.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="499.0" layoutY="464.0" text="Psychiatrist">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="499.0" layoutY="523.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="507.0" layoutY="609.0" text="Remaining Time:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="515.0" layoutY="635.0" text="00:00:00">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="664.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="693.0" layoutY="464.0" text="Family Medicine&#10; Doctor" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="706.0" layoutY="522.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="707.0" layoutY="609.0" text="Remaining Time:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="715.0" layoutY="635.0" text="00:00:00">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="303.0" layoutY="608.0" text="Remaining Time:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="309.0" fitWidth="303.0" layoutX="17.0" layoutY="-41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/landscapelogo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
