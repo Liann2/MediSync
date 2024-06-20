@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <AnchorPane prefHeight="960.0" prefWidth="332.0" style="-fx-background-color: #185EAF;">
+                    <children>
+                        <ImageView fitHeight="294.0" fitWidth="294.0" layoutX="17.0" layoutY="-21.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Images/landscapelogo.png" />
+                            </image>
+                        </ImageView>
+                        <Hyperlink layoutX="99.0" layoutY="204.0" text="Dashboard" textFill="WHITE">
+                            <font>
+                                <Font name="Montserrat Thin" size="22.0" />
+                            </font>
+                        </Hyperlink>
+                        <Hyperlink layoutX="96.0" layoutY="370.0" text="Register Patient" textFill="WHITE">
+                            <font>
+                                <Font name="Montserrat Thin" size="22.0" />
+                            </font>
+                        </Hyperlink>
+                        <Hyperlink layoutX="96.0" layoutY="442.0" text="Patient Queue" textFill="WHITE">
+                            <font>
+                                <Font name="Montserrat Thin" size="22.0" />
+                            </font>
+                        </Hyperlink>
+                        <Hyperlink layoutX="97.0" layoutY="275.0" prefHeight="60.0" prefWidth="168.0" text="Appointment &#10;Scheduler" textFill="WHITE">
+                            <font>
+                                <Font name="Montserrat Thin" size="22.0" />
+                            </font>
+                        </Hyperlink>
+                        <ImageView fitHeight="41.0" fitWidth="38.0" layoutX="44.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Images/dashboardWhite.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="70.0" fitWidth="64.0" layoutX="-39.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="40.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Images/scheduleWhite.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="43.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Images/registerWhite.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="51.0" fitWidth="48.0" layoutX="37.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Images/patientQueueWhite.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="327.0" layoutY="-9.0" prefHeight="960.0" prefWidth="948.0" style="-fx-background-color: #FFFFFF;">
+                    <children>
+                        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="234.0" layoutX="40.0" layoutY="140.0" stroke="BLACK" strokeType="INSIDE" width="335.0" />
+                        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="234.0" layoutX="416.0" layoutY="140.0" stroke="BLACK" strokeType="INSIDE" width="240.0" />
+                        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="370.0" layoutX="40.0" layoutY="419.0" stroke="BLACK" strokeType="INSIDE" width="620.0" />
+                        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="655.0" layoutX="682.0" layoutY="140.0" stroke="BLACK" strokeType="INSIDE" width="251.0" />
+                        <PieChart layoutX="162.0" layoutY="205.0" prefHeight="134.0" prefWidth="110.0" />
+                        <Text layoutX="53.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Patients" wrappingWidth="171.47006225585938">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                        </Text>
+                        <ButtonBar layoutX="195.0" layoutY="510.0" prefHeight="40.0" prefWidth="200.0" />
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="460.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Images/patientIcon.png" />
+                            </image>
+                        </ImageView>
+                        <Text layoutX="434.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Database" textAlignment="CENTER" wrappingWidth="210.13348388671875">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                        </Text>
+                        <Text layoutX="56.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor List" wrappingWidth="171.47006225585938">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                        </Text>
+                        <TableView editable="true" layoutX="53.0" layoutY="486.0" prefHeight="291.0" prefWidth="592.0">
+                            <columns>
+                                <TableColumn editable="false" prefWidth="230.93328857421875" text="Doctors" />
+                                <TableColumn editable="false" prefWidth="154.13336181640625" text="Specialization " />
+                                <TableColumn prefWidth="230.93328857421875" text="Status" />
+                            </columns>
+                        </TableView>
+                        <TreeTableView layoutX="691.0" layoutY="201.0" prefHeight="573.0" prefWidth="234.0">
+                            <columns>
+                                <TreeTableColumn editable="false" prefWidth="117.59991455078125" text="Time " />
+                                <TreeTableColumn editable="false" prefWidth="116.8001708984375" text="Name" />
+                            </columns>
+                        </TreeTableView>
+                        <Text layoutX="693.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments" wrappingWidth="171.47006225585938">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

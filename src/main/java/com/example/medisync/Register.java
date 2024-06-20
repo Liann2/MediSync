@@ -17,11 +17,11 @@ public class Register extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Parent root = null;
+
         try {
-            root = FXMLLoader.load(getClass().getResource("Register.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Register.fxml"));
             Scene scene = new Scene(root, 1280, 960);
-            primaryStage.setTitle("Hello!");
+            primaryStage.setTitle("MediSync Hospital Queue Management System");
             primaryStage.setScene(scene);
             primaryStage.show();
 
