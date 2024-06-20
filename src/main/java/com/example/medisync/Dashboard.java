@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Login extends Application {
+public class Dashboard extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -16,9 +16,8 @@ public class Login extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
             Scene scene = new Scene(root, 1280, 960);
             primaryStage.setTitle("MediSync Hospital Queue Management System");
             primaryStage.setScene(scene);

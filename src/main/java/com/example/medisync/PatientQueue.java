@@ -20,7 +20,7 @@ public class PatientQueue extends Application {
         try {
             root = FXMLLoader.load(getClass().getResource("PatientQueue.fxml"));
             Scene scene = new Scene(root, 1280, 960);
-            primaryStage.setTitle("Hello!");
+            primaryStage.setTitle("MediSync Hospital Queue Management System");
             primaryStage.setScene(scene);
             primaryStage.show();
 
