@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+//WILL BE DELETING THIS SOON.
 public class Register extends Application {
 
 
@@ -19,9 +19,8 @@ public class Register extends Application {
     public void start(Stage primaryStage) {
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Register.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("RegisterPatient.fxml"));
             Scene scene = new Scene(root, 1280, 960);
-            primaryStage.setTitle("MediSync Hospital Queue Management System");
             primaryStage.setScene(scene);
             primaryStage.show();
 

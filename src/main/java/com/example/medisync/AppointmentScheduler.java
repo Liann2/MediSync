@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//WILL BE DELETING THIS SOON.
 public class AppointmentScheduler extends Application {
 
     public static void main(String[] args) {
