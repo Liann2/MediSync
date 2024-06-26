@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Hyperlink?>
@@ -24,48 +25,47 @@
          <children>
             <AnchorPane prefHeight="960.0" prefWidth="332.0" style="-fx-background-color: #185EAF;">
                <children>
-                  <ImageView fitHeight="294.0" fitWidth="308.0" layoutX="17.0" layoutY="-41.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="294.0" fitWidth="308.0" layoutX="13.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/landscapeLogo.png" />
                      </image>
                   </ImageView>
-                  <Hyperlink layoutX="99.0" layoutY="204.0" onAction="#switchToDashboard" text="Dashboard" textFill="WHITE">
+                  <Hyperlink layoutX="105.0" layoutY="233.0" onAction="#switchToDashboard" text="Dashboard" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="22.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink layoutX="96.0" layoutY="370.0" text="Register Patient" textFill="WHITE">
+                  <Hyperlink layoutX="102.0" layoutY="399.0" text="Register Patient" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="22.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink layoutX="96.0" layoutY="442.0" onAction="#switchToPatientQueue" text="Patient Queue" textFill="WHITE">
+                  <Hyperlink layoutX="102.0" layoutY="471.0" onAction="#switchToPatientQueue" text="Patient Queue" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="22.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink layoutX="97.0" layoutY="275.0" onAction="#switchToAppointmentScheduler" prefHeight="60.0" prefWidth="168.0" text="Appointment &#10;Scheduler" textFill="WHITE">
+                  <Hyperlink layoutX="103.0" layoutY="304.0" onAction="#switchToAppointmentScheduler" prefHeight="60.0" prefWidth="168.0" text="Appointment &#10;Scheduler" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="22.0" />
                      </font>
                   </Hyperlink>
-                  <ImageView fitHeight="41.0" fitWidth="38.0" layoutX="44.0" layoutY="204.0" onMouseClicked="#switchToDashboard" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="41.0" fitWidth="38.0" layoutX="50.0" layoutY="233.0" onMouseClicked="#switchToDashboard" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/dashboardWhite.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="64.0" layoutX="-39.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="40.0" layoutY="282.0" onMouseClicked="#switchToAppointmentScheduler" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="46.0" layoutY="311.0" onMouseClicked="#switchToAppointmentScheduler" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/scheduleWhite.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="43.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="49.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/registerWhite.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="51.0" fitWidth="48.0" layoutX="37.0" layoutY="436.0" onMouseClicked="#switchToPatientQueue" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="51.0" fitWidth="48.0" layoutX="43.0" layoutY="465.0" onMouseClicked="#switchToPatientQueue" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/patientQueueWhite.png" />
                      </image>
@@ -154,14 +154,21 @@
                      </children>
                   </Group>
                   <TextField layoutX="221.0" layoutY="500.0" prefHeight="26.0" prefWidth="220.0" style="-fx-background-radius: 10;" />
-                  <Button id="loginButton" layoutX="92.0" layoutY="596.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="305.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Register" textAlignment="CENTER" textFill="WHITE">
+                  <Button id="loginButton" layoutX="328.0" layoutY="624.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="305.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Register" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="17.0" />
                      </font>
                   </Button>
-                  <ComboBox layoutX="757.0" layoutY="348.0" prefHeight="26.0" prefWidth="71.0" />
+                  <ComboBox fx:id="BloodList" layoutX="757.0" layoutY="348.0" prefHeight="26.0" prefWidth="71.0" />
                   <ComboBox layoutX="157.0" layoutY="349.0" prefHeight="26.0" prefWidth="71.0" />
                   <DatePicker layoutX="409.0" layoutY="350.0" />
+                  <Button id="loginButton" layoutX="76.0" layoutY="560.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="130.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Clear" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Montserrat Thin" size="17.0" />
+                     </font>
+                  </Button>
+                  <CheckBox layoutX="546.0" layoutY="517.0" mnemonicParsing="false" text="CheckBox" />
+                  <CheckBox layoutX="678.0" layoutY="517.0" mnemonicParsing="false" text="CheckBox" />
                </children>
             </AnchorPane>
          </children>

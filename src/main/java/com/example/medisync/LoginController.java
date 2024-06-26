@@ -36,7 +36,7 @@ public class LoginController {
             receptionPassword = passwordField.getText();
 
             if(emailField.getText().isEmpty()|| passwordField.getText().isEmpty()){
-                loginButton.setDisable(true); // Disable the button if fields are empty
+                loginButton.setDisable(true);
 
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Login Denied");
@@ -46,7 +46,7 @@ public class LoginController {
                 loginButton.setDisable(false);
             }
             else if(!emailField.getText().equals("receptionABC") || !passwordField.getText().equals("receptionABC")){
-                loginButton.setDisable(true); // Disable the button if credentials are incorrect
+                loginButton.setDisable(true);
 
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Login Denied");
