@@ -113,7 +113,7 @@
                         <Font name="Montserrat Thin" size="24.33" />
                      </font>
                   </Label>
-                  <Label layoutX="587.0" layoutY="345.0" text="Blood Type:">
+                  <Label layoutX="609.0" layoutY="345.0" text="Blood Type:">
                      <font>
                         <Font name="Montserrat Thin" size="24.33" />
                      </font>
@@ -159,7 +159,7 @@
                         <Font name="Montserrat Thin" size="17.0" />
                      </font>
                   </Button>
-                  <ComboBox layoutX="735.0" layoutY="348.0" prefHeight="26.0" prefWidth="71.0" />
+                  <ComboBox layoutX="757.0" layoutY="348.0" prefHeight="26.0" prefWidth="71.0" />
                   <ComboBox layoutX="157.0" layoutY="349.0" prefHeight="26.0" prefWidth="71.0" />
                   <DatePicker layoutX="409.0" layoutY="350.0" />
                </children>
