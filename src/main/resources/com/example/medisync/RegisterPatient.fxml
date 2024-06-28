@@ -79,7 +79,7 @@
             </AnchorPane>
             <AnchorPane layoutX="332.0" prefHeight="960.0" prefWidth="948.0" style="-fx-background-color: white;">
                <children>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#fffcf4" height="523.0" layoutX="38.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="880.0">
+                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#fffcf4" height="703.0" layoutX="38.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="880.0">
                      <effect>
                         <DropShadow>
                            <color>
@@ -118,14 +118,14 @@
                         <Font name="Montserrat Thin" size="24.33" />
                      </font>
                   </Label>
-                  <TextField layoutX="219.0" layoutY="276.0" prefHeight="26.0" prefWidth="261.0" style="-fx-background-radius: 10;" />
-                  <TextField layoutX="604.0" layoutY="279.0" style="-fx-background-radius: 10;" />
+                  <TextField fx:id="fullNameField" layoutX="219.0" layoutY="276.0" prefHeight="26.0" prefWidth="261.0" style="-fx-background-radius: 10;" />
+                  <TextField fx:id="patientIdField" layoutX="604.0" layoutY="279.0" style="-fx-background-radius: 10;" />
                   <Label layoutX="84.0" layoutY="414.0" text="Home Address:">
                      <font>
                         <Font name="Montserrat Thin" size="24.33" />
                      </font>
                   </Label>
-                  <Label layoutX="85.0" layoutY="496.0" text="Phone no.">
+                  <Label layoutX="88.0" layoutY="480.0" text="Phone no.">
                      <font>
                         <Font name="Montserrat Thin" size="24.33" />
                      </font>
@@ -135,10 +135,10 @@
                         <Font name="Montserrat Thin" size="24.33" />
                      </font>
                   </Label>
-                  <TextField layoutX="277.0" layoutY="419.0" prefHeight="26.0" prefWidth="220.0" style="-fx-background-radius: 10;" />
-                  <Group layoutX="646.0" layoutY="418.0">
+                  <TextField fx:id="homeAddressField" layoutX="277.0" layoutY="419.0" prefHeight="26.0" prefWidth="220.0" style="-fx-background-radius: 10;" />
+                  <Group fx:id="sexRGroup" layoutX="646.0" layoutY="418.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="Male">
+                        <RadioButton fx:id="maleButton" mnemonicParsing="false" text="Male">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -146,29 +146,41 @@
                               <ToggleGroup fx:id="gender" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton layoutX="114.0" mnemonicParsing="false" text="Female" toggleGroup="$gender">
+                        <RadioButton fx:id="femaleButton" layoutX="114.0" mnemonicParsing="false" text="Female" toggleGroup="$gender">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </RadioButton>
                      </children>
                   </Group>
-                  <TextField layoutX="221.0" layoutY="500.0" prefHeight="26.0" prefWidth="220.0" style="-fx-background-radius: 10;" />
-                  <Button id="loginButton" layoutX="328.0" layoutY="624.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="305.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Register" textAlignment="CENTER" textFill="WHITE">
+                  <TextField fx:id="phoneNoField" layoutX="224.0" layoutY="484.0" prefHeight="26.0" prefWidth="220.0" style="-fx-background-radius: 10;" />
+                  <Button id="loginButton" layoutX="536.0" layoutY="797.0" mnemonicParsing="false" onAction="#registerPatientInformation" prefHeight="53.0" prefWidth="305.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Register" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="17.0" />
                      </font>
                   </Button>
-                  <ComboBox fx:id="BloodList" layoutX="757.0" layoutY="348.0" prefHeight="26.0" prefWidth="71.0" />
-                  <ComboBox layoutX="157.0" layoutY="349.0" prefHeight="26.0" prefWidth="71.0" />
-                  <DatePicker layoutX="409.0" layoutY="350.0" />
-                  <Button id="loginButton" layoutX="76.0" layoutY="560.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="130.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Clear" textAlignment="CENTER" textFill="WHITE">
+                  <ComboBox fx:id="bloodTypeField" layoutX="757.0" layoutY="348.0" prefHeight="26.0" prefWidth="71.0" />
+                  <DatePicker fx:id="birthdateField" layoutX="409.0" layoutY="350.0" />
+                  <Button id="loginButton" fx:id="clearButton" layoutX="141.0" layoutY="794.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="306.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Clear" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="17.0" />
                      </font>
                   </Button>
-                  <CheckBox layoutX="546.0" layoutY="517.0" mnemonicParsing="false" text="CheckBox" />
-                  <CheckBox layoutX="678.0" layoutY="517.0" mnemonicParsing="false" text="CheckBox" />
+                  <CheckBox fx:id="diabetesCb" layoutX="522.0" layoutY="526.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="74.0" text="Diabetes" />
+                  <CheckBox fx:id="asthmaCb" layoutX="644.0" layoutY="526.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="71.0" text="Asthma" />
+                  <CheckBox fx:id="cancerCb" layoutX="522.0" layoutY="574.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="71.0" text="Cancer" />
+                  <CheckBox fx:id="heartDiseaseCb" layoutX="757.0" layoutY="526.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="102.0" text="Heart Disease" />
+                  <CheckBox fx:id="anemiaCb" layoutX="644.0" layoutY="574.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="71.0" text="Anemia" />
+                  <Label layoutX="517.0" layoutY="480.0" text="Family Health History">
+                     <font>
+                        <Font name="Montserrat Thin" size="24.33" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="ageField" layoutX="145.0" layoutY="349.0" prefHeight="26.0" prefWidth="74.0" style="-fx-background-radius: 10;" />
+                  <CheckBox fx:id="liverDiseaseCb" layoutX="757.0" layoutY="574.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="102.0" text="Liver Disease" />
+                  <CheckBox fx:id="hypertensionCb" layoutX="522.0" layoutY="618.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="102.0" text="Hypertension" />
+                  <CheckBox fx:id="strokeCb" layoutX="644.0" layoutY="618.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="71.0" text="Stroke" />
+                  <CheckBox fx:id="kidneyDiseaseCb" layoutX="757.0" layoutY="618.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="102.0" text="Kidney Disease" />
                </children>
             </AnchorPane>
          </children>

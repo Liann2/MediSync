@@ -20,6 +20,7 @@ public class Login extends Application {
 
             Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
             Scene scene = new Scene(root, 1280, 960);
+            primaryStage.setFullScreen(false);
 
         Image icon = new Image(getClass().getResourceAsStream("/com/example/medisync/Images/MediSyncIcon.png"));
             primaryStage.getIcons().add(icon);
