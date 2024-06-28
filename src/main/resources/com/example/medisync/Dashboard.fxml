@@ -43,7 +43,7 @@
                         <Font name="Montserrat Thin" size="22.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink layoutX="102.0" layoutY="313.0" onAction="#switchToAppointScheduler" prefHeight="60.0" prefWidth="168.0" text="Appointment &#10;Scheduler" textFill="WHITE">
+                  <Hyperlink layoutX="102.0" layoutY="313.0" onAction="#switchToAppointmentScheduler" prefHeight="60.0" prefWidth="168.0" text="Appointment &#10;Scheduler" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="22.0" />
                      </font>
@@ -56,7 +56,7 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="45.0" layoutY="320.0" onMouseClicked="#switchToAppointScheduler" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="45.0" layoutY="320.0" onMouseClicked="#switchToAppointmentScheduler" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/scheduleWhite.png" />
                      </image>

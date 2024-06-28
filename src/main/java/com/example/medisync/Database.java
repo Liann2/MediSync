@@ -25,8 +25,8 @@ public class Database {
                 System.out.println("Reception - Email: " + email + ", Password: " + password);
             }
 
-            // Retrieve data from the patient table
-            String patientQuery = "SELECT patient_id, full_name, birth_date, home_address, phone_number, sex, blood_type, family_history FROM patient";
+            // Retrieve data from the patients table
+            String patientQuery = "SELECT patient_id, full_name, age, birth_date, blood_type, sex, family_history, home_address, phone_number FROM patients";
             PreparedStatement patientStatement = connection.prepareStatement(patientQuery);
             ResultSet patientResultSet = patientStatement.executeQuery();
             while (patientResultSet.next()) {

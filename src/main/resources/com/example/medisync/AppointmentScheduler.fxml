@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,65 +14,56 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1301.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medisync.AppointmentSchedulerController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medisync.AppointmentSchedulerController">
    <children>
-      <AnchorPane prefHeight="960.0" prefWidth="1280.0">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
             <AnchorPane prefHeight="960.0" prefWidth="331.0" style="-fx-background-color: #185EAF;">
                <children>
-                  <ImageView fitHeight="309.0" fitWidth="317.0" layoutX="13.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="294.0" fitWidth="332.0" layoutX="13.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/landscapeLogo.png" />
                      </image>
                   </ImageView>
-                  <Hyperlink layoutX="107.0" layoutY="248.0" onAction="#switchToDashboard" text="Dashboard" textFill="WHITE">
+                  <Hyperlink layoutX="110.0" layoutY="233.0" onAction="#switchToDashboard" text="Dashboard" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="22.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink layoutX="104.0" layoutY="414.0" onAction="#switchToRegisterPatient" text="Register Patient" textFill="WHITE">
+                  <Hyperlink layoutX="107.0" layoutY="399.0" onAction="#switchToRegisterPatient" text="Register Patient" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="22.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink layoutX="104.0" layoutY="486.0" onAction="#switchToPatientQueue" text="Patient Queue" textFill="WHITE">
+                  <Hyperlink layoutX="107.0" layoutY="471.0" onAction="#switchToPatientQueue" text="Patient Queue" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="22.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink layoutX="105.0" layoutY="319.0" prefHeight="60.0" prefWidth="168.0" text="Appointment &#10;Scheduler" textFill="WHITE">
+                  <Hyperlink layoutX="108.0" layoutY="304.0" prefHeight="60.0" prefWidth="168.0" text="Appointment &#10;Scheduler" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="22.0" />
                      </font>
                   </Hyperlink>
-                  <ImageView fitHeight="41.0" fitWidth="38.0" layoutX="52.0" layoutY="248.0" onMouseClicked="#switchToDashboard" onMousePressed="#switchToDashboard" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="41.0" fitWidth="38.0" layoutX="55.0" layoutY="233.0" onMouseClicked="#switchToDashboard" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/dashboardWhite.png" />
                      </image>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
                   </ImageView>
-                  <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="48.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="51.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/scheduleWhite.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="51.0" layoutY="413.0" onMouseClicked="#switchToRegisterPatient" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="54.0" layoutY="398.0" onMouseClicked="#switchToRegisterPatient" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/registerWhite.png" />
                      </image>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
                   </ImageView>
-                  <ImageView fitHeight="51.0" fitWidth="48.0" layoutX="45.0" layoutY="480.0" onMouseClicked="#switchToPatientQueue" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="51.0" fitWidth="48.0" layoutX="48.0" layoutY="465.0" onMouseClicked="#switchToPatientQueue" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/patientQueueWhite.png" />
                      </image>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
                   </ImageView>
                   <Button layoutX="100.0" layoutY="841.0" mnemonicParsing="false" onAction="#logoutUser" prefHeight="39.0" prefWidth="129.0" text="Logout">
                      <font>
@@ -80,251 +72,113 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="331.0" layoutY="-2.0" prefHeight="963.0" prefWidth="971.0" style="-fx-background-color: white;">
+            <AnchorPane layoutX="332.0" prefHeight="960.0" prefWidth="948.0" style="-fx-background-color: white;">
                <children>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="63.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
+                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="345.74" layoutX="38.0" layoutY="44.0" stroke="BLACK" strokeType="INSIDE" width="880.0">
                      <effect>
                         <DropShadow>
                            <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
+                              <Color red="0.557894766330719" green="0.557894766330719" blue="0.557894766330719" />
                            </color>
                         </DropShadow>
                      </effect>
                   </Rectangle>
-                  <Label layoutX="47.0" layoutY="71.0" text="Specialist">
-                     <font>
-                        <Font name="System Bold" size="48.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="80.0" layoutY="198.0" text="Orthodopedist">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="172.0" layoutX="33.0" layoutY="729.0" stroke="BLACK" strokeType="INSIDE" width="866.0" />
-                  <Label layoutX="57.0" layoutY="746.0" text="Parents in Line:">
-                     <font>
-                        <Font name="Arial Italic" size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="105.0" layoutY="256.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="106.0" layoutY="343.0" text="Remaining Time:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="114.0" layoutY="369.0" text="00:00:00">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="263.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
+                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="392.0" layoutX="34.0" layoutY="457.0" stroke="BLACK" strokeType="INSIDE" width="880.0">
                      <effect>
                         <DropShadow>
                            <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
+                              <Color red="0.5789473652839661" green="0.5789473652839661" blue="0.5789473652839661" />
                            </color>
                         </DropShadow>
                      </effect>
                   </Rectangle>
-                  <Label layoutX="280.0" layoutY="198.0" text="Dermatologist">
+                  <Label layoutX="98.0" layoutY="80.0" text="Patient Data:">
                      <font>
-                        <Font size="23.0" />
+                        <Font name="Montserrat Thin" size="40.0" />
                      </font>
                   </Label>
-                  <Label layoutX="305.0" layoutY="256.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
+                  <Label layoutX="144.0" layoutY="165.0" text="Patient Data:">
                      <font>
-                        <Font size="23.0" />
+                        <Font name="Montserrat Thin" size="24.33" />
                      </font>
                   </Label>
-                  <Label layoutX="306.0" layoutY="343.0" text="Remaining Time:">
+                  <Label layoutX="144.0" layoutY="207.0" text="Patient Name:">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Montserrat Thin" size="24.33" />
                      </font>
                   </Label>
-                  <Label layoutX="314.0" layoutY="369.0" text="00:00:00">
+                  <Label layoutX="144.0" layoutY="247.0" text="Address:">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="Montserrat Thin" size="24.33" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="463.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="496.0" layoutY="197.0" text="Pediatrician">
+                  <Label layoutX="144.0" layoutY="286.0" text="Contact Number:">
                      <font>
-                        <Font size="23.0" />
+                        <Font name="Montserrat Thin" size="24.33" />
                      </font>
                   </Label>
-                  <Label layoutX="505.0" layoutY="256.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
+                  <Label layoutX="143.0" layoutY="325.0" text="Date of Birth:">
                      <font>
-                        <Font size="23.0" />
+                        <Font name="Montserrat Thin" size="24.33" />
                      </font>
                   </Label>
-                  <Label layoutX="506.0" layoutY="343.0" text="Remaining Time:">
+                  <TextField layoutX="379.0" layoutY="168.0" style="-fx-background-radius: 10;" />
+                  <TextField layoutX="379.0" layoutY="210.0" style="-fx-background-radius: 10;" />
+                  <TextField layoutX="379.0" layoutY="250.0" style="-fx-background-radius: 10;" />
+                  <TextField layoutX="379.0" layoutY="289.0" style="-fx-background-radius: 10;" />
+                  <TextField layoutX="379.0" layoutY="328.0" style="-fx-background-radius: 10;" />
+                  <Label layoutX="608.0" layoutY="165.0" text="Age:">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Montserrat Thin" size="24.33" />
                      </font>
                   </Label>
-                  <Label layoutX="514.0" layoutY="369.0" text="00:00:00">
+                  <Label layoutX="766.0" layoutY="164.0" text="Sex:">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="Montserrat Thin" size="24.33" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="663.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="710.0" layoutY="196.0" text="OB-GYN">
+                  <Label layoutX="94.0" layoutY="499.0" text="Schedule Appointment:">
                      <font>
-                        <Font size="23.0" />
+                        <Font name="Montserrat Thin" size="40.0" />
                      </font>
                   </Label>
-                  <Label layoutX="705.0" layoutY="256.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
+                  <Label layoutX="398.0" layoutY="571.0" text="Specialty:">
                      <font>
-                        <Font size="23.0" />
+                        <Font name="Montserrat Thin" size="23.04" />
                      </font>
                   </Label>
-                  <Label layoutX="706.0" layoutY="343.0" text="Remaining Time:">
+                  <Label layoutX="398.0" layoutY="621.0" text="Choose Time:">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Montserrat Thin" size="25.83" />
                      </font>
                   </Label>
-                  <Label layoutX="714.0" layoutY="369.0" text="00:00:00">
+                  <Button layoutX="550.0" layoutY="668.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="9:00 AM" />
+                  <Label layoutX="421.0" layoutY="665.0" text="Morning:">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="Montserrat Thin" size="20.46" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="64.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="93.0" layoutY="463.0" text="Cardiologist">
+                  <Label layoutX="421.0" layoutY="700.0" text="Afternoon:">
                      <font>
-                        <Font size="23.0" />
+                        <Font name="Montserrat Thin" size="20.46" />
                      </font>
                   </Label>
-                  <Label layoutX="106.0" layoutY="522.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
+                  <Label layoutX="421.0" layoutY="735.0" text="Evening:">
                      <font>
-                        <Font size="23.0" />
+                        <Font name="Montserrat Thin" size="20.46" />
                      </font>
                   </Label>
-                  <Label layoutX="107.0" layoutY="609.0" text="Remaining Time:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="115.0" layoutY="635.0" text="00:00:00">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="264.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="281.0" layoutY="467.0" text="Gastroenterologists">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="306.0" layoutY="522.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="315.0" layoutY="635.0" text="00:00:00">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="464.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="499.0" layoutY="464.0" text="Psychiatrist">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="499.0" layoutY="523.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="507.0" layoutY="609.0" text="Remaining Time:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="515.0" layoutY="635.0" text="00:00:00">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="664.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="693.0" layoutY="464.0" text="Family Medicine&#10; Doctor" textAlignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="706.0" layoutY="522.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="707.0" layoutY="609.0" text="Remaining Time:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="715.0" layoutY="635.0" text="00:00:00">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="303.0" layoutY="608.0" text="Remaining Time:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <Button layoutX="626.0" layoutY="668.0" mnemonicParsing="false" text="10:00 AM" />
+                  <Button layoutX="704.0" layoutY="668.0" mnemonicParsing="false" text="11:00 AM" />
+                  <Button layoutX="550.0" layoutY="700.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="01:00 PM" />
+                  <Button layoutX="626.0" layoutY="700.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="02:00 PM" />
+                  <Button layoutX="704.0" layoutY="700.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="03:00 PM" />
+                  <Button layoutX="550.0" layoutY="734.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="06:00 PM" />
+                  <Button layoutX="626.0" layoutY="734.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="07:00 PM" />
+                  <Button layoutX="704.0" layoutY="734.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="08:00 PM" />
+                  <ComboBox layoutX="665.0" layoutY="167.0" prefHeight="26.0" prefWidth="75.0" promptText="Select" />
+                  <ComboBox layoutX="820.0" layoutY="167.0" prefHeight="26.0" prefWidth="75.0" promptText="Select" visibleRowCount="2" />
+                  <ComboBox layoutX="512.0" layoutY="574.0" prefHeight="26.0" prefWidth="75.0" promptText="Select" />
                </children>
             </AnchorPane>
          </children>

@@ -11,7 +11,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class DashboardController {
 
@@ -35,7 +34,7 @@ public class DashboardController {
             stage.show();
         }
     }
-    public void switchToAppointScheduler(ActionEvent event) throws IOException {
+    public void switchToAppointmentScheduler(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("AppointmentScheduler.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -45,7 +44,6 @@ public class DashboardController {
 
     public void switchToRegisterPatient(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("RegisterPatient.fxml"));
-//        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("RegisterPatient.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
