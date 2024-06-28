@@ -42,6 +42,8 @@ public class RegisterPatientController implements Initializable {
     @FXML
     private DatePicker birthdateField;
 
+
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -193,13 +195,37 @@ public class RegisterPatientController implements Initializable {
 
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {
-                System.out.println("A new patient was inserted successfully!");
+                showSuccessAlert("Success", "Patient Inserted", "Patient data successfully inserted into the database.");
+            } else {
+                showErrorAlert("Error", "Insert Failed", "Failed to insert patient data into the database.");
             }
 
         } catch (SQLException e) {
-            System.out.println("Error inserting patient: " + e.getMessage());
+            showErrorAlert("Error", "Database Error", "Error inserting patient: " + e.getMessage());
         }
     }
 
+    private void showSuccessAlert(String title, String header, String content) {
+        Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        successAlert.setTitle(title);
+        successAlert.setHeaderText(header);
+        successAlert.setContentText(content);
+        successAlert.showAndWait();
+    }
+
+    private void showErrorAlert(String title, String header, String content) {
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setTitle(title);
+        errorAlert.setHeaderText(header);
+        errorAlert.setContentText(content);
+        errorAlert.showAndWait();
+    }
+
+    public void clearFields (ActionEvent event){
+        fullNameField.clear();
+        patientIdField.clear();
+        ageField.clear();
+
+    }
 }
 
