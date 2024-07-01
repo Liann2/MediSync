@@ -33,15 +33,14 @@ public class RegisterPatientController implements Initializable {
 
     @FXML
     private CheckBox anemiaCb, asthmaCb, cancerCb,
-                    diabetesCb, heartDiseaseCb, hypertensionCb,
-                    strokeCb, liverDiseaseCb, kidneyDiseaseCb;
+            diabetesCb, heartDiseaseCb, hypertensionCb,
+            strokeCb, liverDiseaseCb, kidneyDiseaseCb;
 
     @FXML
     private RadioButton maleButton, femaleButton;
 
     @FXML
     private DatePicker birthdateField;
-
 
 
     private Stage stage;
@@ -57,14 +56,13 @@ public class RegisterPatientController implements Initializable {
     }
 
 
-
     public void logoutUser(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
         alert.setHeaderText("You are about to Logout!");
         alert.setContentText("Are you sure you want to Logout?");
 
-        if (alert.showAndWait().get() == ButtonType.OK){
+        if (alert.showAndWait().get() == ButtonType.OK) {
             root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -72,6 +70,7 @@ public class RegisterPatientController implements Initializable {
             stage.show();
         }
     }
+
 
     public void switchToAppointmentScheduler(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("AppointmentScheduler.fxml"));
@@ -201,8 +200,13 @@ public class RegisterPatientController implements Initializable {
             }
 
         } catch (SQLException e) {
-            showErrorAlert("Error", "Database Error", "Error inserting patient: " + e.getMessage());
+            if (e.getErrorCode() == 1062) {
+                showErrorAlert("Error", "Duplicate Entry", "A patient with this ID already exists in the database.");
+            }
         }
+
+
+
     }
 
     private void showSuccessAlert(String title, String header, String content) {
