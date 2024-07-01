@@ -1,5 +1,7 @@
 package com.example.medisync;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,17 +32,6 @@ public class AppointmentSchedulerController {
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
-
-//
-//    @FXML
-//    private Group afternoonGroup;
-//
-//    @FXML
-//    private Group eveningGroup;
-//
-//    @FXML
-//    private Group morningGroup;
-
     @FXML
     private TextField  patientIdField;
     @FXML
@@ -49,6 +40,7 @@ public class AppointmentSchedulerController {
             phoneField;
     @FXML
     private TextArea familyHealthHistoryField;
+
 
 
 
@@ -104,6 +96,38 @@ public class AppointmentSchedulerController {
         patientIdField.clear();
     }
 
+//    public void searchPatient(ActionEvent event) {
+//        String patientId = patientIdField.getText();
+//        if (patientId.isEmpty()) {
+//            showAlert("Error", "Please enter a Patient ID.");
+//            return;
+//        }
+//
+//        String query = "SELECT * FROM patients WHERE patient_id = ?";
+//        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+//             PreparedStatement pstmt = conn.prepareStatement(query)) {
+//
+//            pstmt.setString(1, patientId);
+//            try (ResultSet rs = pstmt.executeQuery()) {
+//                if (rs.next()) {
+//                    // Assuming your database columns are named accordingly
+//                    patientNameField.setText(rs.getString("full_name"));
+//                    patientAgeField.setText(rs.getString("age"));
+//                    sexField.setText(rs.getString("sex"));
+//                    dateOfBirthField.setText(rs.getString("birth_date"));
+//                    bloodTypeField.setText(rs.getString("blood_type"));
+//                    homeAddressField.setText(rs.getString("home_address"));
+//                    phoneField.setText(rs.getString("phone_number"));
+//                    familyHealthHistoryField.setText(rs.getString("family_history"));
+//                } else {
+//                    showAlert("Not Found", "No patient found with ID: " + patientId);
+//                }
+//            }
+//        } catch (SQLException e) {
+//            showAlert("Error", "Error fetching patient information: " + e.getMessage());
+//        }
+//    }
+
     public void searchPatient(ActionEvent event) {
         String patientId = patientIdField.getText();
         if (patientId.isEmpty()) {
@@ -111,30 +135,53 @@ public class AppointmentSchedulerController {
             return;
         }
 
-        String query = "SELECT * FROM patients WHERE patient_id = ?";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
+        // Create a Task to perform the database query
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                String query = "SELECT * FROM patients WHERE patient_id = ?";
+                try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+                     PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setString(1, patientId);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    // Assuming your database columns are named accordingly
-                    patientNameField.setText(rs.getString("full_name"));
-                    patientAgeField.setText(rs.getString("age"));
-                    sexField.setText(rs.getString("sex"));
-                    dateOfBirthField.setText(rs.getString("birth_date"));
-                    bloodTypeField.setText(rs.getString("blood_type"));
-                    homeAddressField.setText(rs.getString("home_address"));
-                    phoneField.setText(rs.getString("phone_number"));
-                    familyHealthHistoryField.setText(rs.getString("family_history"));
-                } else {
-                    showAlert("Not Found", "No patient found with ID: " + patientId);
+                    pstmt.setString(1, patientId);
+                    try (ResultSet rs = pstmt.executeQuery()) {
+                        if (rs.next()) {
+                            String fullName = rs.getString("full_name");
+                            String age = rs.getString("age");
+                            String sex = rs.getString("sex");
+                            String birthDate = rs.getString("birth_date");
+                            String bloodType = rs.getString("blood_type");
+                            String homeAddress = rs.getString("home_address");
+                            String phoneNumber = rs.getString("phone_number");
+                            String familyHistory = rs.getString("family_history");
+
+                            // Update UI on the JavaFX Application Thread
+                            Platform.runLater(() -> {
+                                patientNameField.setText(fullName);
+                                patientAgeField.setText(age);
+                                sexField.setText(sex);
+                                dateOfBirthField.setText(birthDate);
+                                bloodTypeField.setText(bloodType);
+                                homeAddressField.setText(homeAddress);
+                                phoneField.setText(phoneNumber);
+                                familyHealthHistoryField.setText(familyHistory);
+                            });
+                        } else {
+                            Platform.runLater(() -> showAlert("Not Found", "No patient found with ID: " + patientId));
+                        }
+                    }
+                } catch (SQLException e) {
+                    Platform.runLater(() -> showAlert("Error", "Error fetching patient information: " + e.getMessage()));
                 }
+                return null;
             }
-        } catch (SQLException e) {
-            showAlert("Error", "Error fetching patient information: " + e.getMessage());
-        }
+        };
+
+        // Start the task in a new thread (background thread)
+        Thread thread = new Thread(task);
+        thread.start();
     }
+
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
