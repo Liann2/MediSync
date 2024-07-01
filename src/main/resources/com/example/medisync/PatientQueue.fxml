@@ -241,7 +241,7 @@
                         </DropShadow>
                      </effect>
                   </Rectangle>
-                  <Label layoutX="281.0" layoutY="467.0" text="Gastroenterologists">
+                  <Label layoutX="278.0" layoutY="467.0" text="Gastroenterologists">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -294,7 +294,7 @@
                         </DropShadow>
                      </effect>
                   </Rectangle>
-                  <Label layoutX="693.0" layoutY="464.0" text="Family Medicine&#10; Doctor" textAlignment="CENTER">
+                  <Label layoutX="691.0" layoutY="469.0" text="Family Medicine&#10;" textAlignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
