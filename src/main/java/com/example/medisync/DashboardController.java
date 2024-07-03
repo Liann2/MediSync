@@ -1,5 +1,9 @@
 package com.example.medisync;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,17 +12,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -45,13 +45,86 @@ public class DashboardController implements Initializable {
     @FXML
     private Label totalPatientCountLabel;
 
-
-
+    @FXML
+    private TableView<Doctor> doctorTableView;
+    @FXML
+    private TableColumn<Doctor, String> nameColumn;
+    @FXML
+    private TableColumn<Doctor, String> specializationColumn;
+    @FXML
+    private TableColumn<Doctor, Boolean> statusColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         populatePieChart();
-        updateTotalPatientCount(); // Initialize total patient count on dashboard load
+        updateTotalPatientCount();
+        setupDoctorTableView();
+        populateDoctorTableView();
+    }
+
+    private void setupDoctorTableView() {
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        specializationColumn.setCellValueFactory(new PropertyValueFactory<>("specialization"));
+
+        statusColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Doctor, Boolean>, ObservableValue<Boolean>>() {
+            @Override
+            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Doctor, Boolean> param) {
+                return new SimpleBooleanProperty(false);
+            }
+        });
+
+        statusColumn.setCellFactory(col -> {
+            TableCell<Doctor, Boolean> cell = new TableCell<>() {
+                private final ToggleButton toggleButton = new ToggleButton("Available");
+
+                @Override
+                protected void updateItem(Boolean item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(toggleButton);
+                        toggleButton.setOnAction(event -> {
+                            // Handle toggle button action
+                            boolean isSelected = toggleButton.isSelected();
+                            toggleButton.setText(isSelected ? "Available" : "Unavailable");
+                        });
+                    }
+                }
+            };
+            return cell;
+        });
+    }
+
+    private void populateDoctorTableView() {
+        Task<ObservableList<Doctor>> task = new Task<>() {
+            @Override
+            protected ObservableList<Doctor> call() throws Exception {
+                ObservableList<Doctor> doctors = FXCollections.observableArrayList();
+                String query = "SELECT name, specialization FROM doctors";
+
+                try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+                     PreparedStatement pstmt = conn.prepareStatement(query);
+                     ResultSet rs = pstmt.executeQuery()) {
+
+                    while (rs.next()) {
+                        String name = rs.getString("name");
+                        String specialization = rs.getString("specialization");
+                        doctors.add(new Doctor(name, specialization));
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    throw new Exception("Database query failed", e);
+                }
+
+                return doctors;
+            }
+        };
+
+        task.setOnSucceeded(e -> doctorTableView.setItems(task.getValue()));
+        task.setOnFailed(e -> showErrorAlert("Database Error", "Error fetching doctor data: " + task.getException().getMessage()));
+
+        new Thread(task).start();
     }
 
     public void logoutUser(ActionEvent event) throws IOException {
@@ -94,7 +167,7 @@ public class DashboardController implements Initializable {
     }
 
     public void populatePieChart() {
-        Task<ObservableList<PieChart.Data>> task = new Task<ObservableList<PieChart.Data>>() {
+        Task<ObservableList<PieChart.Data>> task = new Task<>() {
             @Override
             protected ObservableList<PieChart.Data> call() throws Exception {
                 ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
@@ -156,16 +229,11 @@ public class DashboardController implements Initializable {
 
         task.setOnFailed(event -> showErrorAlert("Database Error", "Error fetching total patients: " + task.getException().getMessage()));
 
-        new Thread(task).start(); // Start the background task
+        new Thread(task).start();
     }
-
-
 
     private void showErrorAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+
     }
 }
