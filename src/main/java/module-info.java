@@ -6,6 +6,7 @@ module com.example.medisync {
     requires net.synedra.validatorfx;
     requires eu.hansolo.tilesfx;
     requires java.desktop;
+    requires java.management;
 
 
     opens com.example.medisync to javafx.fxml;

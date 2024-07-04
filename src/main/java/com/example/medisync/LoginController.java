@@ -61,9 +61,9 @@ public class LoginController {
             stage.setScene(scene);
             stage.show();
         }
-//        else {
-//            showLoginError("Invalid Credentials.", "The email or password is incorrect.");
-//        }
+        else {
+            showLoginError("Invalid Credentials.", "The email or password is incorrect.");
+        }
     }
 
     private boolean checkCredentials(String email, String password) {
@@ -83,11 +83,9 @@ public class LoginController {
             if (e.getSQLState().equals("08S01")) {
                 // Handle communication link failure
                 System.err.println("Communication link failure: " + e.getMessage());
-                showLoginError("Communication Error", "Failed to communicate with the database server.");
+                showLoginError("Communication Error", "Failed to communicate with the database. Please contact the admin");
             } else {
-                // Handle other SQL exceptions
-                System.err.println("Error checking credentials: " + e.getMessage());
-                showLoginError("Error", "Please try again. If error still occurs, contact admin.");
+                showLoginError(e.getMessage(), "Communication Error");
             }
             return false;
         }
