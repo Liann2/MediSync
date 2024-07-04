@@ -16,6 +16,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -66,7 +67,6 @@ public class DashboardController implements Initializable {
         populateDoctorTableView();
 
         startThreadMonitor();
-
     }
 
     private void startThreadMonitor() {
@@ -87,7 +87,6 @@ public class DashboardController implements Initializable {
         monitorThread.start();
     }
 
-
     private void setupDoctorTableView() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         specializationColumn.setCellValueFactory(new PropertyValueFactory<>("specialization"));
@@ -101,6 +100,7 @@ public class DashboardController implements Initializable {
 
         statusColumn.setCellFactory(col -> new TableCell<Doctor, Boolean>() {
             private final ToggleButton toggleButton = new ToggleButton("Available");
+            private final Label statusLabel = new Label("Unavailable");
 
             @Override
             protected void updateItem(Boolean item, boolean empty) {
@@ -108,10 +108,15 @@ public class DashboardController implements Initializable {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    setGraphic(toggleButton);
+                    setGraphic(new HBox(10, toggleButton, statusLabel));
+                    toggleButton.setSelected(item != null && item);
+                    toggleButton.setText(toggleButton.isSelected() ? "Toggle" : "Toggle");
+                    statusLabel.setText(toggleButton.isSelected() ? "Available" : "Unavailable");
+
                     toggleButton.setOnAction(event -> {
                         boolean isSelected = toggleButton.isSelected();
-                        toggleButton.setText(isSelected ? "Available" : "Unavailable");
+                        toggleButton.setText(isSelected ? "Toggle" : "Toggle");
+                        statusLabel.setText(isSelected ? "Available" : "Unavailable");
                     });
                 }
             }
@@ -145,7 +150,6 @@ public class DashboardController implements Initializable {
 
         task.setOnSucceeded(e -> doctorTableView.setItems(task.getValue()));
         task.setOnFailed(e -> showErrorAlert("Database Error", "Error fetching doctor data: " + task.getException().getMessage()));
-
 
         new Thread(task).start();
     }
