@@ -106,7 +106,8 @@ public class RegisterPatientController implements Initializable {
         LocalDate birthdate = birthdateField.getValue();
         String bloodType = bloodTypeField.getSelectionModel().getSelectedItem();
         String homeAddress = homeAddressField.getText();
-        String phoneNo = phoneNoField.getText();
+        String phoneNo = phoneNoField.getText().replaceAll("\\s", "");
+
 
         if(maleButton.isSelected()){
             sex = "M";

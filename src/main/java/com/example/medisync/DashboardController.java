@@ -28,6 +28,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadMXBean;
+
+
 public class DashboardController implements Initializable {
 
     private Stage stage;
@@ -60,7 +64,29 @@ public class DashboardController implements Initializable {
         updateTotalPatientCount();
         setupDoctorTableView();
         populateDoctorTableView();
+
+        startThreadMonitor();
+
     }
+
+    private void startThreadMonitor() {
+        ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
+        Thread monitorThread = new Thread(() -> {
+            while (true) {
+                int threadCount = threadMXBean.getThreadCount();
+                System.out.println("Current number of threads: " + threadCount);
+                try {
+                    Thread.sleep(5000); // Adjust the interval as needed
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        });
+        monitorThread.setDaemon(true); // Set the monitor thread as a daemon thread
+        monitorThread.start();
+    }
+
 
     private void setupDoctorTableView() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -73,26 +99,22 @@ public class DashboardController implements Initializable {
             }
         });
 
-        statusColumn.setCellFactory(col -> {
-            TableCell<Doctor, Boolean> cell = new TableCell<>() {
-                private final ToggleButton toggleButton = new ToggleButton("Available");
+        statusColumn.setCellFactory(col -> new TableCell<Doctor, Boolean>() {
+            private final ToggleButton toggleButton = new ToggleButton("Available");
 
-                @Override
-                protected void updateItem(Boolean item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty) {
-                        setGraphic(null);
-                    } else {
-                        setGraphic(toggleButton);
-                        toggleButton.setOnAction(event -> {
-                            // Handle toggle button action
-                            boolean isSelected = toggleButton.isSelected();
-                            toggleButton.setText(isSelected ? "Available" : "Unavailable");
-                        });
-                    }
+            @Override
+            protected void updateItem(Boolean item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(toggleButton);
+                    toggleButton.setOnAction(event -> {
+                        boolean isSelected = toggleButton.isSelected();
+                        toggleButton.setText(isSelected ? "Available" : "Unavailable");
+                    });
                 }
-            };
-            return cell;
+            }
         });
     }
 
@@ -123,6 +145,7 @@ public class DashboardController implements Initializable {
 
         task.setOnSucceeded(e -> doctorTableView.setItems(task.getValue()));
         task.setOnFailed(e -> showErrorAlert("Database Error", "Error fetching doctor data: " + task.getException().getMessage()));
+
 
         new Thread(task).start();
     }
@@ -234,6 +257,9 @@ public class DashboardController implements Initializable {
 
     private void showErrorAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
