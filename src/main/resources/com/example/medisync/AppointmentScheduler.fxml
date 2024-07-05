@@ -140,7 +140,7 @@
                         <Font name="Montserrat Thin" size="20.46" />
                      </font>
                   </Label>
-                  <ComboBox layoutX="212.0" layoutY="656.0" prefHeight="26.0" prefWidth="75.0" promptText="Select" />
+                  <ComboBox fx:id="appointSpecializationDropdown" layoutX="212.0" layoutY="656.0" prefHeight="26.0" prefWidth="75.0" promptText="Select" />
                   <AnchorPane layoutX="482.0" layoutY="91.0" prefHeight="342.0" prefWidth="421.0">
                      <effect>
                         <DropShadow>
@@ -216,7 +216,7 @@
                   </AnchorPane>
                   <Group fx:id="morningGroup" layoutX="229.0" layoutY="766.0">
                      <children>
-                        <RadioButton layoutX="91.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="90.0" text="8:00AM">
+                        <RadioButton fx:id="morning2Button" layoutX="91.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="90.0" text="8:00AM">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -224,12 +224,12 @@
                               <ToggleGroup fx:id="morning" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton layoutX="181.0" layoutY="1.0" mnemonicParsing="false" text="10:00AM" toggleGroup="$morning">
+                        <RadioButton fx:id="morning3Button" layoutX="181.0" layoutY="1.0" mnemonicParsing="false" text="10:00AM" toggleGroup="$morning">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton layoutY="4.0" mnemonicParsing="false" text="7:00AM" toggleGroup="$morning">
+                        <RadioButton fx:id="morning1Button" layoutY="4.0" mnemonicParsing="false" text="7:00AM" toggleGroup="$morning">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -238,7 +238,7 @@
                   </Group>
                   <Group fx:id="afternoonGroup" layoutX="230.0" layoutY="811.0">
                      <children>
-                        <RadioButton layoutX="91.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="90.0" text="2:00PM">
+                        <RadioButton fx:id="afternoon2Button" layoutX="91.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="90.0" text="2:00PM">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -246,12 +246,12 @@
                               <ToggleGroup fx:id="afternoon" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton layoutX="181.0" layoutY="1.0" mnemonicParsing="false" text="4:00PM" toggleGroup="$afternoon">
+                        <RadioButton fx:id="afternoon3Button" layoutX="181.0" layoutY="1.0" mnemonicParsing="false" text="4:00PM" toggleGroup="$afternoon">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton layoutY="4.0" mnemonicParsing="false" text="12:00NN" toggleGroup="$afternoon">
+                        <RadioButton fx:id="afternoon1Button" layoutY="4.0" mnemonicParsing="false" text="12:00NN" toggleGroup="$afternoon">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -260,7 +260,7 @@
                   </Group>
                   <Group fx:id="eveningGroup" layoutX="230.0" layoutY="853.0">
                      <children>
-                        <RadioButton layoutX="91.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="90.0" text="8:00PM">
+                        <RadioButton fx:id="evening2Button" layoutX="91.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="90.0" text="8:00PM">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -268,12 +268,12 @@
                               <ToggleGroup fx:id="evening" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton layoutX="181.0" layoutY="1.0" mnemonicParsing="false" text="10:00PM" toggleGroup="$evening">
+                        <RadioButton fx:id="evening3Button" layoutX="181.0" layoutY="1.0" mnemonicParsing="false" text="10:00PM" toggleGroup="$evening">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton layoutY="4.0" mnemonicParsing="false" text="6:00PM" toggleGroup="$evening">
+                        <RadioButton fx:id="evening1Button" layoutY="4.0" mnemonicParsing="false" text="6:00PM" toggleGroup="$evening">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -295,12 +295,12 @@
                         <Font name="Montserrat Thin" size="17.0" />
                      </font>
                   </Button>
-                  <Button id="loginButton" fx:id="clearButton111" contentDisplay="BOTTOM" layoutX="554.0" layoutY="851.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="31.0" prefWidth="105.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Submit" textAlignment="CENTER" textFill="WHITE">
+                  <Button id="loginButton" fx:id="submitAppointmentButton" contentDisplay="BOTTOM" layoutX="554.0" layoutY="851.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="31.0" prefWidth="105.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Submit" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="17.0" />
                      </font>
                   </Button>
-                  <DatePicker layoutX="387.0" layoutY="655.0" />
+                  <DatePicker fx:id="appointmentDateField" layoutX="387.0" layoutY="655.0" />
                   <Text fx:id="patientInstruction" layoutX="98.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the patient ID that will be appointing a schedule." />
                </children>
             </AnchorPane>
