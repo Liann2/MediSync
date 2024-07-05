@@ -121,10 +121,10 @@
                             </columns>
                         </TableView>
 
-                        <TreeTableView layoutX="691.0" layoutY="201.0" prefHeight="573.0" prefWidth="234.0">
+                        <TreeTableView fx:id="appointmentTable" layoutX="691.0" layoutY="201.0" prefHeight="573.0" prefWidth="234.0">
                             <columns>
-                                <TreeTableColumn editable="false" prefWidth="117.59991455078125" text="Time " />
-                                <TreeTableColumn editable="false" prefWidth="116.8001708984375" text="Name" />
+                                <TreeTableColumn fx:id="appointmentTimeColumn" editable="false" prefWidth="117.59991455078125" text="Time " />
+                                <TreeTableColumn fx:id="appointmentNameColumn" editable="false" prefWidth="116.8001708984375" text="Name" />
                             </columns>
                         </TreeTableView>
                         <Text layoutX="693.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments" wrappingWidth="171.47006225585938">

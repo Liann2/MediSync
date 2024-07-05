@@ -27,6 +27,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 import java.lang.management.ManagementFactory;
@@ -59,12 +61,21 @@ public class DashboardController implements Initializable {
     @FXML
     private TableColumn<Doctor, Boolean> statusColumn;
 
+    @FXML
+    private TreeTableView<Appointment> appointmentTable;
+    @FXML
+    private TreeTableColumn<Appointment, String> appointmentTimeColumn;
+    @FXML
+    private TreeTableColumn<Appointment, String> appointmentNameColumn;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         populatePieChart();
         updateTotalPatientCount();
         setupDoctorTableView();
         populateDoctorTableView();
+        setupAppointmentTableView();
+        populateAppointmentTable();
 
         startThreadMonitor();
     }
@@ -266,4 +277,57 @@ public class DashboardController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    private void setupAppointmentTableView() {
+        appointmentTimeColumn.setCellValueFactory(param -> param.getValue().getValue().appointmentTimeProperty());
+        appointmentNameColumn.setCellValueFactory(param -> param.getValue().getValue().fullNameProperty());
+    }
+
+
+    private void populateAppointmentTable() {
+        Task<ObservableList<Appointment>> task = new Task<>() {
+            @Override
+            protected ObservableList<Appointment> call() throws Exception {
+                ObservableList<Appointment> appointments = FXCollections.observableArrayList();
+                String query = "SELECT appointment_id, patient_id, full_name, appointment_date, appointment_time, pref_specialization FROM appointments";
+
+                try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+                     PreparedStatement pstmt = conn.prepareStatement(query);
+                     ResultSet rs = pstmt.executeQuery()) {
+
+                    while (rs.next()) {
+                        int appointmentId = rs.getInt("appointment_id");
+                        int patientId = rs.getInt("patient_id");
+                        String fullName = rs.getString("full_name");
+                        LocalDate appointmentDate = rs.getDate("appointment_date").toLocalDate();
+                        LocalTime appointmentTime = rs.getTime("appointment_time").toLocalTime();
+                        String prefSpecialization = rs.getString("pref_specialization");
+                        appointments.add(new Appointment(appointmentId, patientId, fullName, appointmentDate, appointmentTime, prefSpecialization));
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    throw new Exception("Database query failed", e);
+                }
+
+                return appointments;
+            }
+        };
+
+        task.setOnSucceeded(e -> {
+            ObservableList<TreeItem<Appointment>> treeItems = FXCollections.observableArrayList();
+            for (Appointment appointment : task.getValue()) {
+                TreeItem<Appointment> item = new TreeItem<>(appointment);
+                treeItems.add(item);
+            }
+            TreeItem<Appointment> rootItem = new TreeItem<>(new Appointment(0, 0, "", null, null, ""));
+            rootItem.getChildren().setAll(treeItems);
+            appointmentTable.setRoot(rootItem);
+            appointmentTable.setShowRoot(false);
+        });
+
+        task.setOnFailed(e -> showErrorAlert("Database Error", "Error fetching appointment data: " + task.getException().getMessage()));
+
+        new Thread(task).start();
+    }
+
 }
