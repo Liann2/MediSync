@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="415.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medisync.PopUpController">
+    <children>
+        <TableView fx:id="PatientTableView" layoutX="5.0" layoutY="35.0" prefHeight="371.0" prefWidth="728.0">
+            <columns>
+                <TableColumn fx:id="patientIDColumn" prefWidth="58.4000244140625" text="ID" />
+                <TableColumn fx:id="fNameColumn" prefWidth="92.0" text="Name" />
+                <TableColumn fx:id="birthDateColumn" prefWidth="74.40008544921875" text="Birth Date" />
+                <TableColumn fx:id="bloodTypeColumn" prefWidth="72.79998779296875" text="Blood-type" />
+                <TableColumn fx:id="sexColumn" prefWidth="41.5999755859375" text="Sex" />
+                <TableColumn fx:id="familyHistoryColumn" prefWidth="129.60003662109375" text="Family History" />
+                <TableColumn fx:id="homeAddressColumn" prefWidth="111.19998168945312" text="Address" />
+                <TableColumn fx:id="phoneNumberColumn" prefWidth="88.00006103515625" text="Phone #" />
+                <TableColumn fx:id="ageColumn" prefWidth="56.7999267578125" text="Age" />
+            </columns>
+        </TableView>
+        <Label layoutX="14.0" layoutY="7.0" prefHeight="25.0" prefWidth="152.0" text="Patient Data" />
+    </children>
+</AnchorPane>

@@ -15,11 +15,14 @@ import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -46,6 +49,7 @@ public class DashboardController implements Initializable {
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
+
     @FXML
     private PieChart totalPatientChart;
 
@@ -67,6 +71,34 @@ public class DashboardController implements Initializable {
     private TreeTableColumn<Appointment, String> appointmentTimeColumn;
     @FXML
     private TreeTableColumn<Appointment, String> appointmentNameColumn;
+
+    @FXML
+    private ImageView patientTableIcon;
+//
+
+    @FXML
+    public void handlePopUp(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientTablePopUp.fxml"));
+            Parent root1 = (Parent) loader.load();
+            Stage stage1 = new Stage();
+            stage1.setTitle("Patient Database");
+            stage1.setScene(new Scene(root1));
+            stage1.show();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("ERROR!");
+            alert.setContentText("FUCKING ERROR?");
+
+
+
+        }
+
+    }
+
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -300,7 +332,10 @@ public class DashboardController implements Initializable {
                         int patientId = rs.getInt("patient_id");
                         String fullName = rs.getString("full_name");
                         LocalDate appointmentDate = rs.getDate("appointment_date").toLocalDate();
-                        LocalTime appointmentTime = rs.getTime("appointment_time").toLocalTime();
+                        LocalTime appointmentTime = null;
+                        if (rs.getTime("appointment_time") != null) {
+                            appointmentTime = rs.getTime("appointment_time").toLocalTime();
+                        }
                         String prefSpecialization = rs.getString("pref_specialization");
                         appointments.add(new Appointment(appointmentId, patientId, fullName, appointmentDate, appointmentTime, prefSpecialization));
                     }

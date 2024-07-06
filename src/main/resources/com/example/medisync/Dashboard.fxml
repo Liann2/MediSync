@@ -98,7 +98,7 @@
                             </font>
                         </Text>
                         <ButtonBar layoutX="195.0" layoutY="510.0" prefHeight="40.0" prefWidth="200.0" />
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="460.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="patientTableIcon" fitHeight="150.0" fitWidth="200.0" layoutX="460.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@Images/patientIcon.png" />
                             </image>
@@ -137,6 +137,7 @@
                         <Font name="Montserrat Thin" size="42.0" />
                      </font>
                   </Label>
+                  <Button fx:id="patientTableButton" layoutX="453.0" layoutY="154.0" maxWidth="186.0" minHeight="178.0" mnemonicParsing="false" onAction="#handlePopUp" prefHeight="170.0" prefWidth="164.0" stylesheets="@dashboardStyle.css" textFill="WHITE" />
                     </children>
                 </AnchorPane>
             </children>
