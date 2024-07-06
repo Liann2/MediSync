@@ -1,13 +1,11 @@
-#patientInstruction {
-    -fx-font-family: "Montserrat";
-    -fx-font-size: 14px;
-    -fx-translate-y: 15px;
-}
-
 .label{
     -fx-font-family: "Montserrat Classic";
+
 }
 
+.register-bold{
+    -fx-font-weight: bold;
+}
 
 .button{
     -fx-background-color:  #ffff;
@@ -106,7 +104,7 @@
 .text-field {
     -fx-background-color: #FFFFFF; /* Background color */
     -fx-border-color: #185EAF; /* Border color */
-    -fx-border-radius: 5; /* Border radius */
+    -fx-border-radius: 15; /* Border radius */
     -fx-padding: 5; /* Padding */
     -fx-background-radius: 5; /* Background radius */
     -fx-font-family: 'Montserrat Thin'; /* Font family */
@@ -128,58 +126,31 @@
 
 
 
-/* Customize the TextArea */
-.text-area {
-    -fx-background-color: #FFFFFF; /* Background color */
-    -fx-border-color: #185EAF; /* Border color */
-    -fx-border-radius: 5; /* Border radius */
-    -fx-padding: 5; /* Padding */
-    -fx-background-radius: 5; /* Background radius */
-    -fx-font-family: 'Montserrat Thin'; /* Font family */
-    -fx-font-size: 14px; /* Font size */
+
+
+/* Style for RadioButton */
+.radio-button {
+    -fx-font-size: 20px;
+    -fx-text-fill: #000;
+    -fx-font-weight: semi-bold;
 }
 
 
-/* Customize the TextArea when focused */
-.text-area:focused {
-    -fx-border-color: #4A90E2; /* Border color when focused */
-}
-
-
-/* Customize the prompt text (placeholder) */
-.text-area .text {
-    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%); /* Prompt text color */
+.radio-button:selected {
+    -fx-mark-color: #185EAF;
 }
 
 
 
-
-/* Customize the scrollbar */
-.scroll-bar:vertical {
-    -fx-background-color: transparent;
-    -fx-padding: 0;
+/* Style for CheckBox */
+.check-box {
+    -fx-font-size: 15px;
+    -fx-text-fill: #000;
+    -fx-padding: 5;
+    -fx-font-weight: semi-bold;
 }
 
 
-.scroll-bar:horizontal {
-    -fx-background-color: transparent;
-    -fx-padding: 0;
+.check-box:selected {
+    -fx-mark-color: #185EAF;
 }
-
-
-/* Customize the thumb */
-.scroll-bar .thumb {
-    -fx-background-color: #185EAF; /* Change to desired color */
-    -fx-background-insets: 0;
-    -fx-background-radius: 5;
-}
-
-
-/* Customize the track */
-.scroll-bar .track {
-    -fx-background-color: #E0E0E0; /* Change to desired color */
-    -fx-background-insets: 0;
-    -fx-background-radius: 5;
-}
-
-

@@ -142,8 +142,15 @@ public class DashboardController implements Initializable {
         });
 
         statusColumn.setCellFactory(col -> new TableCell<Doctor, Boolean>() {
-            private final ToggleButton toggleButton = new ToggleButton("Available");
-            private final Label statusLabel = new Label("Unavailable");
+            private final ToggleButton toggleButton = new ToggleButton("Toggle");
+
+            {
+                toggleButton.setOnAction(event -> {
+                    boolean isSelected = toggleButton.isSelected();
+                    toggleButton.setText(isSelected ? "Available" : "Unavailable");
+                    // Update availability in your data model if needed
+                });
+            }
 
             @Override
             protected void updateItem(Boolean item, boolean empty) {
@@ -151,20 +158,14 @@ public class DashboardController implements Initializable {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    setGraphic(new HBox(10, toggleButton, statusLabel));
+                    setGraphic(toggleButton);
                     toggleButton.setSelected(item != null && item);
-                    toggleButton.setText(toggleButton.isSelected() ? "Toggle" : "Toggle");
-                    statusLabel.setText(toggleButton.isSelected() ? "Available" : "Unavailable");
-
-                    toggleButton.setOnAction(event -> {
-                        boolean isSelected = toggleButton.isSelected();
-                        toggleButton.setText(isSelected ? "Toggle" : "Toggle");
-                        statusLabel.setText(isSelected ? "Available" : "Unavailable");
-                    });
+                    toggleButton.setText(toggleButton.isSelected() ? "Available" : "Unavailable");
                 }
             }
         });
     }
+
 
     private void populateDoctorTableView() {
         Task<ObservableList<Doctor>> task = new Task<>() {

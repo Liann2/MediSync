@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medisync.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1280.0" style="-fx-background-color: white;" stylesheets="@login.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medisync.LoginController">
    <children>
       <ImageView fitHeight="992.0" fitWidth="760.0" layoutX="-120.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,16 +22,16 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <Button id="loginButton" fx:id="loginButton" alignment="CENTER" layoutX="802.0" layoutY="644.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="38.0" prefWidth="326.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Log In" textAlignment="CENTER" textFill="WHITE">
+      <Button id="loginButton" fx:id="loginButton" alignment="CENTER" layoutX="802.0" layoutY="672.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="38.0" prefWidth="326.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Log In" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Montserrat Thin" size="17.0" />
+            <Font size="17.0" />
          </font>
       </Button>
-      <PasswordField fx:id="passwordField" layoutX="803.0" layoutY="534.0" prefHeight="38.0" prefWidth="326.0" promptText="Password" style="-fx-background-radius: 20;">
+      <PasswordField fx:id="passwordField" layoutX="803.0" layoutY="562.0" prefHeight="38.0" prefWidth="326.0" promptText="Password" style="-fx-background-radius: 20;">
          <font>
             <Font size="14.0" />
          </font></PasswordField>
-      <TextField fx:id="emailField" layoutX="803.0" layoutY="461.0" prefHeight="38.0" prefWidth="326.0" promptText="Email" style="-fx-background-radius: 20;">
+      <TextField fx:id="emailField" layoutX="803.0" layoutY="489.0" prefHeight="38.0" prefWidth="326.0" promptText="Email" style="-fx-background-radius: 20;">
          <font>
             <Font size="14.0" />
          </font></TextField>
@@ -40,15 +40,15 @@
             <Image url="@Images/medisyncLogo.png" />
          </image>
       </ImageView>
-      <Label layoutX="766.0" layoutY="347.0" text="Log In to your Account">
+      <Label layoutX="766.0" layoutY="375.0" text="Log In to your Account">
          <font>
             <Font name="Montserrat Thin" size="36.0" />
          </font>
       </Label>
-      <Line endX="117.199951171875" layoutX="957.0" layoutY="402.0" startX="-100.0" stroke="#185eaf" strokeWidth="2.0" />
-      <Text fx:id="forgotPassword" layoutX="802.0" layoutY="614.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot Password? " underline="true">
+      <Line endX="117.199951171875" layoutX="957.0" layoutY="430.0" startX="-100.0" stroke="#185eaf" strokeWidth="2.0" />
+      <Text fx:id="forgotPassword" fill="#185eaf" layoutX="802.0" layoutY="642.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot Password? " underline="true">
          <font>
-            <Font name="Montserrat Thin" size="14.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Text>
    </children>
