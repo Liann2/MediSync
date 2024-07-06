@@ -1,0 +1,28 @@
+.label{
+    -fx-font-family: "Montserrat";
+}
+
+
+/* Customize the TextField */
+.text-field {
+    -fx-background-color: #FFFFFF; /* Background color */
+    -fx-border-color: #185EAF; /* Border color */
+    -fx-border-radius: 15; /* Border radius */
+    -fx-padding: 5; /* Padding */
+    -fx-background-radius: 5; /* Background radius */
+    -fx-font-family: "Montserrat"; /* Font family */
+    -fx-font-size: 14px; /* Font size */
+}
+
+
+/* Customize the TextField when focused */
+.text-field:focused {
+    -fx-border-color: #4A90E2; /* Border color when focused */
+}
+
+
+/* Customize the prompt text (placeholder) */
+.text-field .text {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%); /* Prompt text color */
+    -fx-font-family: "Montserrat";
+}

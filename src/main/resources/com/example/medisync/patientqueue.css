@@ -1,0 +1,40 @@
+.button{
+    -fx-background-color:  #ffff;
+    -fx-background-radius: 20px;
+}
+
+
+.label{
+    -fx-font-family: "Montserrat";
+}
+
+
+/* Customize the scrollbar */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+
+/* Customize the thumb */
+.scroll-bar .thumb {
+    -fx-background-color: #185EAF; /* Change to desired color */
+    -fx-background-insets: 0;
+    -fx-background-radius: 5;
+}
+
+
+/* Customize the track */
+.scroll-bar .track {
+    -fx-background-color: #E0E0E0; /* Change to desired color */
+    -fx-background-insets: 0;
+    -fx-background-radius: 5;
+}
+
+

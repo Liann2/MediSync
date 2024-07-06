@@ -1,6 +1,6 @@
 .label {
     -fx-font-family: "Montserrat";
-    -fx-font-size: 65px;
+
     -fx-font-weight: bold;
 }
 
@@ -16,3 +16,71 @@
     -fx-max-width: 164px; /* Sets maximum width */
     -fx-max-height: 179px; /* Sets maximum height */
 }
+
+.button{
+    -fx-background-color:  #ffff;
+    -fx-background-radius: 20px;
+}
+
+
+.table-column .label{
+    -fx-background-color:  #185EAF;
+    -fx-text-fill: #ffff;
+    -fx-font-size: 17px;
+}
+
+
+.table-view{
+    -fx-text-fill: #ffff;
+}
+
+
+.tree-table-view{
+    -fx-text-fill: #ffff;
+}
+
+
+/* Customize the scrollbar */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+
+/* Customize the thumb */
+.scroll-bar .thumb {
+    -fx-background-color: #185EAF; /* Change to desired color */
+    -fx-background-insets: 0;
+    -fx-background-radius: 5;
+    -fx-text-fill: #185EAF;
+}
+
+
+/* Customize the track */
+.scroll-bar .track {
+    -fx-background-color: #E0E0E0; /* Change to desired color */
+    -fx-background-insets: 0;
+    -fx-background-radius: 5;
+
+}
+
+
+.toggle-button {
+    -fx-background-color: #CCCCCC; /* Default background color */
+    -fx-text-fill: black; /* Text color */
+    -fx-padding: 5px 10px; /* Padding inside the button */
+    -fx-font-size: 14px; /* Font size */
+    -fx-translate-x: 60px;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #4CAF50; /* Background color when selected (on) */
+    -fx-text-fill: white; /* Text color when selected */
+}
+
