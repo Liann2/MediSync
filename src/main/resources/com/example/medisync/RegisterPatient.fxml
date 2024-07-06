@@ -154,14 +154,14 @@
                      </children>
                   </Group>
                   <TextField fx:id="phoneNoField" layoutX="224.0" layoutY="484.0" prefHeight="26.0" prefWidth="220.0" style="-fx-background-radius: 10;" />
-                  <Button id="loginButton" layoutX="536.0" layoutY="797.0" mnemonicParsing="false" onAction="#registerPatientInformation" prefHeight="53.0" prefWidth="305.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Register" textAlignment="CENTER" textFill="WHITE">
+                  <Button id="loginButton" fx:id="registerButton" layoutX="536.0" layoutY="797.0" mnemonicParsing="false" onAction="#registerPatientInformation" prefHeight="53.0" prefWidth="305.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Register" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="17.0" />
                      </font>
                   </Button>
                   <ComboBox fx:id="bloodTypeField" layoutX="757.0" layoutY="348.0" prefHeight="26.0" prefWidth="71.0" />
                   <DatePicker fx:id="birthdateField" layoutX="409.0" layoutY="350.0" />
-                  <Button id="loginButton" fx:id="clearButton" layoutX="141.0" layoutY="794.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="60.0" prefWidth="306.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Clear" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="clearButton" layoutX="141.0" layoutY="794.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="60.0" prefWidth="306.0" style="-fx-background-radius: 20; -fx-background-color: #185EAF;" text="Clear" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Thin" size="17.0" />
                      </font>

@@ -1,10 +1,15 @@
 package com.example.medisync;
 
-import javafx.beans.property.*;
-import java.time.LocalDate; // Import LocalDate from java.time
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.IntegerProperty;
+import java.time.LocalDate;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 public class Patient {
-    private IntegerProperty patientId;
+    private IntegerProperty id;
     private StringProperty fullName;
     private IntegerProperty age;
     private ObjectProperty<LocalDate> birthDate;
@@ -14,12 +19,11 @@ public class Patient {
     private StringProperty homeAddress;
     private StringProperty phoneNumber;
 
-    public Patient(int patientId, String fullName, int age, LocalDate birthDate, String bloodType,
-                   String sex, String familyHistory, String homeAddress, String phoneNumber) {
-        this.patientId = new SimpleIntegerProperty(patientId);
+    public Patient(int id, String fullName, int age, LocalDate birthDate, String bloodType, String sex, String familyHistory, String homeAddress, String phoneNumber) {
+        this.id = new SimpleIntegerProperty(id);
         this.fullName = new SimpleStringProperty(fullName);
         this.age = new SimpleIntegerProperty(age);
-        this.birthDate = new SimpleObjectProperty<>(birthDate); // Correct usage of LocalDate here
+        this.birthDate = new SimpleObjectProperty<>(birthDate);
         this.bloodType = new SimpleStringProperty(bloodType);
         this.sex = new SimpleStringProperty(sex);
         this.familyHistory = new SimpleStringProperty(familyHistory);
@@ -27,17 +31,16 @@ public class Patient {
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
     }
 
-    // Getters and setters for all properties
-    public int getPatientId() {
-        return patientId.get();
+    public int getId() {
+        return id.get();
     }
 
-    public IntegerProperty patientIdProperty() {
-        return patientId;
+    public IntegerProperty idProperty() {
+        return id;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId.set(patientId);
+    public void setId(int id) {
+        this.id.set(id);
     }
 
     public String getFullName() {
@@ -124,7 +127,7 @@ public class Patient {
         this.homeAddress.set(homeAddress);
     }
 
-    public  String getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber.get();
     }
 

@@ -49,6 +49,9 @@ public class RegisterPatientController implements Initializable {
 
     private String sex;
 
+    private int confirmedId;
+    private String patientName;
+
 
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> list = FXCollections.observableArrayList("A", "B", "O", "AB");

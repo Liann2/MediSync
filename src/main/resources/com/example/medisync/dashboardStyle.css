@@ -3,3 +3,16 @@
     -fx-font-size: 65px;
     -fx-font-weight: bold;
 }
+
+#patientTableButton {
+    -fx-background-image: url("Images/patientIcon.png");
+    -fx-background-size: contain; /* Ensures the image fits within the button */
+    -fx-background-repeat: no-repeat; /* Prevents the image from repeating */
+    -fx-background-position: center; /* Centers the image within the button */
+    -fx-background-color: transparent; /* Makes the background color of the button transparent */
+    -fx-cursor: hand; /* Changes cursor to a hand pointer on hover */
+    -fx-min-width: 164px; /* Sets minimum width */
+    -fx-min-height: 179px; /* Sets minimum height */
+    -fx-max-width: 164px; /* Sets maximum width */
+    -fx-max-height: 179px; /* Sets maximum height */
+}
