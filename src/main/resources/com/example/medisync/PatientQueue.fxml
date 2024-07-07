@@ -99,7 +99,7 @@
                       <TableColumn fx:id="appointmentDateColumn" prefWidth="195.19998168945312" text="Appointment Date" />
                       <TableColumn fx:id="bookedTimeColumn" prefWidth="157.5999755859375" text="Booked Time" />
                         <TableColumn fx:id="patientNameColumn" prefWidth="202.4000244140625" text="Patient Name" />
-                        <TableColumn fx:id="pSpecialization" prefWidth="155.99993896484375" text="Specialization" />
+                        <TableColumn fx:id="pSpecializationColumn" prefWidth="155.99993896484375" text="Specialization" />
                         <TableColumn fx:id="actionColumn" prefWidth="147.199951171875" text="Action" />
                     </columns>
                   </TableView>

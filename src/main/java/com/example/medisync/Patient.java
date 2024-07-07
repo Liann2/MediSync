@@ -31,6 +31,7 @@ public class Patient {
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
     }
 
+
     public int getId() {
         return id.get();
     }
