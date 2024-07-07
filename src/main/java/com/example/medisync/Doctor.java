@@ -9,9 +9,10 @@ public class Doctor {
     private StringProperty availability;
     private StringProperty remainingTime;
 
-    public Doctor(StringProperty name, StringProperty specialization) {
-        this.name = name;
-        this.specialization = specialization;
+    // Constructor for DashboardController
+    public Doctor(String name, String specialization) {
+        this.name = new SimpleStringProperty(name);
+        this.specialization = new SimpleStringProperty(specialization);
     }
 
     // Constructor for PatientQueueController
@@ -21,6 +22,7 @@ public class Doctor {
         this.availability = new SimpleStringProperty(availability);
         this.remainingTime = new SimpleStringProperty("00:00");
     }
+
 
 
     // Getters and setters

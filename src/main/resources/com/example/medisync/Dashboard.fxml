@@ -115,9 +115,8 @@
                         </Text>
                         <TableView fx:id="doctorTableView" editable="true" layoutX="53.0" layoutY="486.0" prefHeight="291.0" prefWidth="592.0">
                             <columns>
-                                <TableColumn fx:id="nameColumn" editable="false" prefWidth="230.93328857421875" resizable="false" text="Doctors" />
-                                <TableColumn fx:id="specializationColumn" editable="false" prefWidth="154.13336181640625" resizable="false" text="Specialization " />
-                                <TableColumn fx:id="statusColumn" editable="false" prefWidth="230.93328857421875" resizable="false" text="Status" />
+                                <TableColumn fx:id="nameColumn" editable="false" prefWidth="299.20001220703125" resizable="false" text="Doctors" />
+                                <TableColumn fx:id="specializationColumn" editable="false" prefWidth="291.99993896484375" resizable="false" text="Specialization " />
                             </columns>
                         </TableView>
 
