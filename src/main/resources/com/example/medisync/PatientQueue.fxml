@@ -81,7 +81,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="327.0" layoutY="-2.0" prefHeight="963.0" prefWidth="971.0" style="-fx-background-color: white;">
+            <AnchorPane layoutX="324.0" layoutY="4.0" prefHeight="963.0" prefWidth="971.0" style="-fx-background-color: white;">
                <children>
                   <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="63.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
                      <effect>
@@ -328,9 +328,23 @@
                   <AnchorPane layoutX="110.0" layoutY="752.0" prefHeight="189.0" prefWidth="771.0">
                      <children>
                         <ScrollPane layoutX="-7.0" layoutY="3.0" prefHeight="174.0" prefWidth="771.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="170.0" prefWidth="772.0" />
-                          </content>
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="170.0" prefWidth="772.0" fx:id="draggablePane">
+                                 <children>
+                                    <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="95.0" layoutX="40.0" layoutY="38.0" stroke="BLACK" strokeType="INSIDE" width="237.0" />
+                                    <Label layoutX="51.0" layoutY="70.0" opacity="0.24" text="Booked: Cardiologist">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="51.0" layoutY="97.0" opacity="0.24" text="ID: 123456">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </content>
                         </ScrollPane>
                      </children>
                   </AnchorPane>
