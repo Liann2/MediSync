@@ -1,9 +1,7 @@
 package com.example.medisync;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -19,12 +17,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -36,10 +31,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
-import java.lang.management.ManagementFactory;
-import java.lang.management.ThreadMXBean;
-
-
 public class DashboardController implements Initializable {
 
     private Stage stage;
@@ -50,7 +41,6 @@ public class DashboardController implements Initializable {
     private static final String URL = "jdbc:mysql://localhost:3306/medisync";
     private static final String USER = "root";
     private static final String PASSWORD = "";
-
 
     @FXML
     private PieChart totalPatientChart;
@@ -64,8 +54,6 @@ public class DashboardController implements Initializable {
     private TableColumn<Doctor, String> nameColumn;
     @FXML
     private TableColumn<Doctor, String> specializationColumn;
-    @FXML
-    private TableColumn<Doctor, Boolean> statusColumn;
 
     @FXML
     private TreeTableView<Appointment> appointmentTable;
@@ -76,7 +64,6 @@ public class DashboardController implements Initializable {
 
     @FXML
     private ImageView patientTableIcon;
-//
 
     @FXML
     public void handlePopUp(ActionEvent event) {
@@ -91,16 +78,10 @@ public class DashboardController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("ERROR");
             alert.setHeaderText("ERROR!");
-            alert.setContentText("FUCKING ERROR?");
-
-
-
+            alert.setContentText("An error occurred while loading the patient database.");
+            alert.showAndWait();
         }
-
     }
-
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,16 +91,13 @@ public class DashboardController implements Initializable {
         populateDoctorTableView();
         setupAppointmentTableView();
         populateAppointmentTable();
-
         startThreadMonitor();
     }
 
     private void startThreadMonitor() {
-        ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
         Thread monitorThread = new Thread(() -> {
             while (true) {
-                int threadCount = threadMXBean.getThreadCount();
-                System.out.println("Current number of threads: " + threadCount);
+                // Add your thread monitoring logic here
                 try {
                     Thread.sleep(5000); // Adjust the interval as needed
                 } catch (InterruptedException e) {
@@ -135,39 +113,7 @@ public class DashboardController implements Initializable {
     private void setupDoctorTableView() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         specializationColumn.setCellValueFactory(new PropertyValueFactory<>("specialization"));
-
-        statusColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Doctor, Boolean>, ObservableValue<Boolean>>() {
-            @Override
-            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Doctor, Boolean> param) {
-                return new SimpleBooleanProperty(false);
-            }
-        });
-
-        statusColumn.setCellFactory(col -> new TableCell<Doctor, Boolean>() {
-            private final ToggleButton toggleButton = new ToggleButton("Toggle");
-
-            {
-                toggleButton.setOnAction(event -> {
-                    boolean isSelected = toggleButton.isSelected();
-                    toggleButton.setText(isSelected ? "Available" : "Unavailable");
-                    // Update availability in your data model if needed
-                });
-            }
-
-            @Override
-            protected void updateItem(Boolean item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(toggleButton);
-                    toggleButton.setSelected(item != null && item);
-                    toggleButton.setText(toggleButton.isSelected() ? "Available" : "Unavailable");
-                }
-            }
-        });
     }
-
 
     private void populateDoctorTableView() {
         Task<ObservableList<Doctor>> task = new Task<>() {
@@ -181,13 +127,9 @@ public class DashboardController implements Initializable {
                      ResultSet rs = pstmt.executeQuery()) {
 
                     while (rs.next()) {
-                        // Create StringProperty instances for name and specialization
-                        StringProperty nameProperty = new SimpleStringProperty(rs.getString("name"));
-                        StringProperty specializationProperty = new SimpleStringProperty(rs.getString("specialization"));
-
-                        // Create Doctor object with StringProperty parameters
-                        Doctor doctor = new Doctor(nameProperty, specializationProperty);
-                        doctors.add(doctor);
+                        String name = rs.getString("name");
+                        String specialization = rs.getString("specialization");
+                        doctors.add(new Doctor(name, specialization));
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -204,6 +146,54 @@ public class DashboardController implements Initializable {
         new Thread(task).start();
     }
 
+    private void populateAppointmentTable() {
+        Task<ObservableList<Appointment>> task = new Task<>() {
+            @Override
+            protected ObservableList<Appointment> call() throws Exception {
+                ObservableList<Appointment> appointments = FXCollections.observableArrayList();
+                String query = "SELECT appointment_id, patient_id, full_name, appointment_date, appointment_time, pref_specialization FROM appointments";
+
+                try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+                     PreparedStatement pstmt = conn.prepareStatement(query);
+                     ResultSet rs = pstmt.executeQuery()) {
+
+                    while (rs.next()) {
+                        int appointmentId = rs.getInt("appointment_id");
+                        int patientId = rs.getInt("patient_id");
+                        String fullName = rs.getString("full_name");
+                        LocalDate appointmentDate = rs.getDate("appointment_date").toLocalDate();
+                        LocalTime appointmentTime = null;
+                        if (rs.getTime("appointment_time") != null) {
+                            appointmentTime = rs.getTime("appointment_time").toLocalTime();
+                        }
+                        String prefSpecialization = rs.getString("pref_specialization");
+                        appointments.add(new Appointment(appointmentId, patientId, fullName, appointmentDate, appointmentTime, prefSpecialization));
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    throw new Exception("Database query failed", e);
+                }
+
+                return appointments;
+            }
+        };
+
+        task.setOnSucceeded(e -> {
+            ObservableList<TreeItem<Appointment>> treeItems = FXCollections.observableArrayList();
+            for (Appointment appointment : task.getValue()) {
+                TreeItem<Appointment> item = new TreeItem<>(appointment);
+                treeItems.add(item);
+            }
+            TreeItem<Appointment> rootItem = new TreeItem<>(new Appointment(0, 0, "", null, null, ""));
+            rootItem.getChildren().setAll(treeItems);
+            appointmentTable.setRoot(rootItem);
+            appointmentTable.setShowRoot(false);
+        });
+
+        task.setOnFailed(e -> showErrorAlert("Database Error", "Error fetching appointment data: " + task.getException().getMessage()));
+
+        new Thread(task).start();
+    }
 
     public void logoutUser(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -323,54 +313,5 @@ public class DashboardController implements Initializable {
         appointmentNameColumn.setCellValueFactory(param -> param.getValue().getValue().fullNameProperty());
     }
 
-
-    private void populateAppointmentTable() {
-        Task<ObservableList<Appointment>> task = new Task<>() {
-            @Override
-            protected ObservableList<Appointment> call() throws Exception {
-                ObservableList<Appointment> appointments = FXCollections.observableArrayList();
-                String query = "SELECT appointment_id, patient_id, full_name, appointment_date, appointment_time, pref_specialization FROM appointments";
-
-                try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-                     PreparedStatement pstmt = conn.prepareStatement(query);
-                     ResultSet rs = pstmt.executeQuery()) {
-
-                    while (rs.next()) {
-                        int appointmentId = rs.getInt("appointment_id");
-                        int patientId = rs.getInt("patient_id");
-                        String fullName = rs.getString("full_name");
-                        LocalDate appointmentDate = rs.getDate("appointment_date").toLocalDate();
-                        LocalTime appointmentTime = null;
-                        if (rs.getTime("appointment_time") != null) {
-                            appointmentTime = rs.getTime("appointment_time").toLocalTime();
-                        }
-                        String prefSpecialization = rs.getString("pref_specialization");
-                        appointments.add(new Appointment(appointmentId, patientId, fullName, appointmentDate, appointmentTime, prefSpecialization));
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    throw new Exception("Database query failed", e);
-                }
-
-                return appointments;
-            }
-        };
-
-        task.setOnSucceeded(e -> {
-            ObservableList<TreeItem<Appointment>> treeItems = FXCollections.observableArrayList();
-            for (Appointment appointment : task.getValue()) {
-                TreeItem<Appointment> item = new TreeItem<>(appointment);
-                treeItems.add(item);
-            }
-            TreeItem<Appointment> rootItem = new TreeItem<>(new Appointment(0, 0, "", null, null, ""));
-            rootItem.getChildren().setAll(treeItems);
-            appointmentTable.setRoot(rootItem);
-            appointmentTable.setShowRoot(false);
-        });
-
-        task.setOnFailed(e -> showErrorAlert("Database Error", "Error fetching appointment data: " + task.getException().getMessage()));
-
-        new Thread(task).start();
-    }
-
 }
+

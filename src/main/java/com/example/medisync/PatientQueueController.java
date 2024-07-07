@@ -8,11 +8,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.Timer;
@@ -80,6 +83,14 @@ public class PatientQueueController implements Initializable {
 
         loadDoctorData();
 
+        doctorQueueTable.setItems(doctorList);
+
+        // Center-align text in all doctor table columns
+        doctorQueueTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        doctorNameColumn.setCellFactory(tc -> (TableCell<Doctor, StringProperty>) createCenterAlignedCell());
+        specializationColumn.setCellFactory(tc -> (TableCell<Doctor, StringProperty>) createCenterAlignedCell());
+        availabilityColumn.setCellFactory(tc -> (TableCell<Doctor, StringProperty>) createCenterAlignedCell());
+        remainingTimeColumn.setCellFactory(tc -> (TableCell<Doctor, StringProperty>) createCenterAlignedCell());
 
         appointmentDateColumn.setCellValueFactory(new PropertyValueFactory<>("appointment_date"));
         bookedTimeColumn.setCellValueFactory(new PropertyValueFactory<>("appointment_time"));
@@ -89,25 +100,27 @@ public class PatientQueueController implements Initializable {
         addButtonToTable();
 
         loadAppointmentData();
+    }
 
-        bookedTimeColumn.setCellValueFactory(new PropertyValueFactory<>("appointment_time"));
 
-// Handle null values in the cell factory
-        bookedTimeColumn.setCellFactory(column -> new TableCell<Appointment, LocalTime>() {
+
+    private TableCell<?, ?> createCenterAlignedCell() {
+        return new TableCell<>() {
             @Override
-            protected void updateItem(LocalTime item, boolean empty) {
+            protected void updateItem(Object item, boolean empty) {
                 super.updateItem(item, empty);
-
                 if (empty || item == null) {
                     setText(null);
                 } else {
                     setText(item.toString());
+                    setAlignment(Pos.CENTER);
                 }
             }
-        });
-
-
+        };
     }
+
+
+
 
     private void loadDoctorData() {
         try {
@@ -140,6 +153,12 @@ public class PatientQueueController implements Initializable {
             private final Button btn = new Button("Appoint");
 
             {
+                btn.getStyleClass().add("appoint-button"); // Apply CSS class to button
+
+                // Center align button
+                btn.setMaxWidth(Double.MAX_VALUE);
+                btn.setAlignment(Pos.CENTER);
+
                 btn.setOnAction(event -> {
                     Appointment appointment = getTableView().getItems().get(getIndex());
                     System.out.println("Appoint clicked for: " + appointment.getFull_name());
@@ -158,6 +177,7 @@ public class PatientQueueController implements Initializable {
             }
         });
     }
+
 
     private void loadAppointmentData() {
         try {
@@ -311,6 +331,9 @@ public class PatientQueueController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        // Load the CSS for styling after scene is initialized
+        scene.getStylesheets().add(getClass().getResource("PatientQueueStyles.css").toExternalForm());
     }
 
     public void switchToDashboard(ActionEvent event) throws IOException {
@@ -319,6 +342,9 @@ public class PatientQueueController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        // Load the CSS for styling after scene is initialized
+        scene.getStylesheets().add(getClass().getResource("PatientQueueStyles.css").toExternalForm());
     }
 
     public void switchToRegisterPatient(ActionEvent event) throws IOException {
@@ -327,5 +353,8 @@ public class PatientQueueController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        // Load the CSS for styling after scene is initialized
+        scene.getStylesheets().add(getClass().getResource("PatientQueueStyles.css").toExternalForm());
     }
 }
