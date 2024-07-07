@@ -7,6 +7,7 @@ module com.example.medisync {
     requires eu.hansolo.tilesfx;
     requires java.desktop;
     requires java.management;
+    requires com.dlsc.gemsfx;
 
 
     opens com.example.medisync to javafx.fxml;

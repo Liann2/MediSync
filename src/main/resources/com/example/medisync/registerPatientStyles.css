@@ -137,7 +137,7 @@
 .radio-button {
     -fx-font-size: 20px;
     -fx-text-fill: #000;
-    -fx-font-weight: semi-bold;
+
 }
 
 
@@ -152,7 +152,7 @@
     -fx-font-size: 15px;
     -fx-text-fill: #000;
     -fx-padding: 5;
-    -fx-font-weight: semi-bold;
+
 }
 
 

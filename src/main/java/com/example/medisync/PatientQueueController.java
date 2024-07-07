@@ -22,16 +22,6 @@ public class PatientQueueController{
     private Scene scene;
     private Parent root;
 
-    @FXML
-    private AnchorPane draggablePane;
-    private double xOffset = 0;
-    private double yOffset = 0;
-
-    @FXML
-    public void initialize() {
-        makeDraggable(draggablePane);
-    }
-
     public void logoutUser(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
@@ -71,17 +61,6 @@ public class PatientQueueController{
         stage.show();
     }
 
-    private void makeDraggable(AnchorPane pane) {
-        pane.setOnMousePressed(event -> {
-            xOffset = event.getSceneX() - pane.getLayoutX();
-            yOffset = event.getSceneY() - pane.getLayoutY();
-        });
-
-        pane.setOnMouseDragged(event -> {
-            pane.setLayoutX(event.getSceneX() - xOffset);
-            pane.setLayoutY(event.getSceneY() - yOffset);
-        });
-    }
 
 
 }
