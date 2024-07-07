@@ -1,6 +1,8 @@
 package com.example.medisync;
 
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -179,9 +181,13 @@ public class DashboardController implements Initializable {
                      ResultSet rs = pstmt.executeQuery()) {
 
                     while (rs.next()) {
-                        String name = rs.getString("name");
-                        String specialization = rs.getString("specialization");
-                        doctors.add(new Doctor(name, specialization));
+                        // Create StringProperty instances for name and specialization
+                        StringProperty nameProperty = new SimpleStringProperty(rs.getString("name"));
+                        StringProperty specializationProperty = new SimpleStringProperty(rs.getString("specialization"));
+
+                        // Create Doctor object with StringProperty parameters
+                        Doctor doctor = new Doctor(nameProperty, specializationProperty);
+                        doctors.add(doctor);
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -197,6 +203,7 @@ public class DashboardController implements Initializable {
 
         new Thread(task).start();
     }
+
 
     public void logoutUser(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

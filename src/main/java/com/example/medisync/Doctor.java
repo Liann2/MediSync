@@ -9,64 +9,34 @@ public class Doctor {
     private StringProperty availability;
     private StringProperty remainingTime;
 
-    public Doctor(String name, String specialization) {
-        this.name = new SimpleStringProperty(name);
-        this.specialization = new SimpleStringProperty(specialization);
+    public Doctor(StringProperty name, StringProperty specialization) {
+        this.name = name;
+        this.specialization = specialization;
     }
 
-    // New constructor DoctorA
+    // Constructor for PatientQueueController
     public Doctor(String name, String specialization, String availability, String remainingTime) {
         this.name = new SimpleStringProperty(name);
         this.specialization = new SimpleStringProperty(specialization);
         this.availability = new SimpleStringProperty(availability);
-        this.remainingTime = new SimpleStringProperty(remainingTime);
+        this.remainingTime = new SimpleStringProperty("00:00");
     }
 
-    public String getName() {
-        return name.get();
-    }
 
-    public StringProperty nameProperty() {
-        return name;
-    }
+    // Getters and setters
+    public String getName() { return name.get(); }
+    public StringProperty nameProperty() { return name; }
+    public void setName(String name) { this.name.set(name); }
 
-    public void setName(String name) {
-        this.name.set(name);
-    }
+    public String getSpecialization() { return specialization.get(); }
+    public StringProperty specializationProperty() { return specialization; }
+    public void setSpecialization(String specialization) { this.specialization.set(specialization); }
 
-    public String getSpecialization() {
-        return specialization.get();
-    }
+    public String getAvailability() { return availability.get(); }
+    public StringProperty availabilityProperty() { return availability; }
+    public void setAvailability(String availability) { this.availability.set(availability); }
 
-    public StringProperty specializationProperty() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization.set(specialization);
-    }
-
-    public String getAvailability() {
-        return availability.get();
-    }
-
-    public StringProperty availabilityProperty() {
-        return availability;
-    }
-
-    public void setAvailability(String availability) {
-        this.availability.set(availability);
-    }
-
-    public String getRemainingTime() {
-        return remainingTime.get();
-    }
-
-    public StringProperty remainingTimeProperty() {
-        return remainingTime;
-    }
-
-    public void setRemainingTime(String remainingTime) {
-        this.remainingTime.set(remainingTime);
-    }
+    public String getRemainingTime() { return remainingTime.get(); }
+    public StringProperty remainingTimeProperty() { return remainingTime; }
+    public void setRemainingTime(String remainingTime) { this.remainingTime.set(remainingTime); }
 }

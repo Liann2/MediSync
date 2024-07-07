@@ -75,7 +75,8 @@ public class Appointment {
     }
 
     public StringProperty appointmentTimeProperty() {
-        return new SimpleStringProperty(appointment_time.toString());
+        // Ensure appointment_time is not null before converting to StringProperty
+        return new SimpleStringProperty(appointment_time != null ? appointment_time.toString() : "");
     }
 
     public StringProperty fullNameProperty() {

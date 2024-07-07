@@ -1,5 +1,7 @@
 package com.example.medisync;
 
+import javafx.application.Platform;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.util.Timer;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -22,6 +25,8 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class PatientQueueController implements Initializable {
     private static final String URL = "jdbc:mysql://localhost:3306/medisync";
@@ -32,13 +37,13 @@ public class PatientQueueController implements Initializable {
     @FXML
     private TableView<Doctor> doctorQueueTable;
     @FXML
-    private TableColumn<Doctor, String> doctorNameColumn;
+    private TableColumn<Doctor, StringProperty> doctorNameColumn;
     @FXML
-    private TableColumn<Doctor, String> specializationColumn;
+    private TableColumn<Doctor, StringProperty> specializationColumn;
     @FXML
-    private TableColumn<Doctor, String> availabilityColumn;
+    private TableColumn<Doctor, StringProperty> availabilityColumn;
     @FXML
-    private TableColumn<Doctor, String> remainingTimeColumn;
+    private TableColumn<Doctor, StringProperty> remainingTimeColumn;
 
     private ObservableList<Doctor> doctorList = FXCollections.observableArrayList();
 
@@ -51,9 +56,9 @@ public class PatientQueueController implements Initializable {
     @FXML
     private TableColumn<Appointment, LocalTime> bookedTimeColumn;
     @FXML
-    private TableColumn<Appointment, String> patientNameColumn;
+    private TableColumn<Appointment, StringProperty> patientNameColumn;
     @FXML
-    private TableColumn<Appointment, String> pSpecializationColumn;
+    private TableColumn<Appointment, StringProperty> pSpecializationColumn;
     @FXML
     private TableColumn<Appointment, Void> actionColumn;
     private ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
@@ -84,11 +89,29 @@ public class PatientQueueController implements Initializable {
         addButtonToTable();
 
         loadAppointmentData();
+
+        bookedTimeColumn.setCellValueFactory(new PropertyValueFactory<>("appointment_time"));
+
+// Handle null values in the cell factory
+        bookedTimeColumn.setCellFactory(column -> new TableCell<Appointment, LocalTime>() {
+            @Override
+            protected void updateItem(LocalTime item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.toString());
+                }
+            }
+        });
+
+
     }
 
     private void loadDoctorData() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medisync", "root", "");
+            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
             String query = "SELECT name, specialization FROM doctors";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -120,7 +143,7 @@ public class PatientQueueController implements Initializable {
                 btn.setOnAction(event -> {
                     Appointment appointment = getTableView().getItems().get(getIndex());
                     System.out.println("Appoint clicked for: " + appointment.getFull_name());
-                    // Implement action for the button here
+                    assignPatientToDoctor(appointment);
                 });
             }
 
@@ -162,6 +185,106 @@ public class PatientQueueController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    private void assignPatientToDoctor(Appointment appointment) {
+        for (Doctor doctor : doctorList) {
+            if (doctor.getSpecialization().equals(appointment.getPref_specialization()) && doctor.getAvailability().equals("Available")) {
+                // Assign patient to doctor
+                doctor.setAvailability("Occupied");
+                doctor.setRemainingTime("15 mins"); // Example remaining time
+
+                // Print or log assignment for debugging purposes
+                System.out.println("Assigned patient " + appointment.getFull_name() + " to doctor " + doctor.getName());
+
+                // Remove from UI immediately
+                appointmentList.remove(appointment);
+
+                // Schedule removal from database based on appointment time
+                scheduleAppointmentRemoval(appointment, doctor);
+
+                break;
+            }
+        }
+    }
+
+
+    private void scheduleAppointmentRemoval(Appointment appointment, Doctor doctor) {
+        long delayInSeconds = 15; // Fixed delay of 15 seconds
+
+        Timer timer = new Timer();
+
+        AtomicInteger remainingSeconds = new AtomicInteger((int) delayInSeconds);
+
+        // Initial update of remaining time
+        doctor.setRemainingTime(formatRemainingTime(remainingSeconds.get()));
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    // Update remaining time in Doctor object
+                    doctor.setRemainingTime(formatRemainingTime(remainingSeconds.get()));
+                    remainingSeconds.getAndDecrement();
+
+                    if (remainingSeconds.get() < 0) {
+                        // Remove from database
+                        removeAppointmentFromDatabase(appointment);
+
+                        // Cancel the timer task
+                        timer.cancel();
+                    }
+                });
+            }
+        }, 0, 1000); // Schedule to update every second
+    }
+
+    private String formatRemainingTime(int remainingSeconds) {
+        if (remainingSeconds <= 0) {
+            return "00:00";
+        } else {
+            int minutes = remainingSeconds / 60;
+            int seconds = remainingSeconds % 60;
+            return String.format("%02d:%02d", minutes, seconds); // Format as "MM:SS"
+        }
+    }
+
+
+
+    private long calculateSecondsUntilAppointment(LocalDate appointmentDate, LocalTime appointmentTime) {
+        LocalDate currentDate = LocalDate.now();
+        LocalTime currentTime = LocalTime.now();
+
+        long secondsUntilAppointment = 0;
+
+        if (currentDate.isBefore(appointmentDate) || (currentDate.equals(appointmentDate) && currentTime.isBefore(appointmentTime))) {
+            // Calculate time difference in seconds
+            long currentSeconds = currentDate.toEpochDay() * 86400 + currentTime.toSecondOfDay();
+            long appointmentSeconds = appointmentDate.toEpochDay() * 86400 + appointmentTime.toSecondOfDay();
+
+            secondsUntilAppointment = appointmentSeconds - currentSeconds;
+        }
+
+        return secondsUntilAppointment;
+    }
+
+
+
+    private void removeAppointmentFromDatabase(Appointment appointment) {
+        try {
+            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            String query = "DELETE FROM appointments WHERE appointment_id = " + appointment.getAppointment_id();
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 
 
     public void logoutUser(ActionEvent event) throws IOException {
