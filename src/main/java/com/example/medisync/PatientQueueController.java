@@ -100,9 +100,19 @@ public class PatientQueueController implements Initializable {
         addButtonToTable();
 
         loadAppointmentData();
+
+        // Center-align text in all appointment table columns
+        patientQueueTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        appointmentDateColumn.setCellFactory(tc -> (TableCell<Appointment, LocalDate>) createCenterAlignedCell());
+        bookedTimeColumn.setCellFactory(tc -> (TableCell<Appointment, LocalTime>) createCenterAlignedCell());
+        patientNameColumn.setCellFactory(tc -> (TableCell<Appointment, StringProperty>) createCenterAlignedCell());
+        pSpecializationColumn.setCellFactory(tc -> (TableCell<Appointment, StringProperty>) createCenterAlignedCell());
+
+        // Load the CSS for styling
+        if (scene != null) {
+            scene.getStylesheets().add(getClass().getResource("PatientQueueStyles.css").toExternalForm());
+        }
     }
-
-
 
     private TableCell<?, ?> createCenterAlignedCell() {
         return new TableCell<>() {
