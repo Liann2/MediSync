@@ -5,7 +5,11 @@
 }
 
 .label{
-    -fx-font-family: "Montserrat Classic";
+    -fx-font-family: "Montserrat";
+}
+
+.text-field {
+    -fx-font-family: "Montserrat";
 }
 
 
@@ -109,7 +113,7 @@
     -fx-border-radius: 5; /* Border radius */
     -fx-padding: 5; /* Padding */
     -fx-background-radius: 5; /* Background radius */
-    -fx-font-family: 'Montserrat Thin'; /* Font family */
+    -fx-font-family: 'Montserrat'; /* Font family */
     -fx-font-size: 14px; /* Font size */
 }
 
@@ -135,7 +139,7 @@
     -fx-border-radius: 5; /* Border radius */
     -fx-padding: 5; /* Padding */
     -fx-background-radius: 5; /* Background radius */
-    -fx-font-family: 'Montserrat Thin'; /* Font family */
+    -fx-font-family: 'Montserrat'; /* Font family */
     -fx-font-size: 14px; /* Font size */
 }
 

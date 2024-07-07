@@ -7,6 +7,11 @@
     -fx-font-weight: bold;
 }
 
+.text-field {
+    -fx-font-family: "Montserrat";
+}
+
+
 .button{
     -fx-background-color:  #ffff;
     -fx-background-radius: 20px;
@@ -153,4 +158,8 @@
 
 .check-box:selected {
     -fx-mark-color: #185EAF;
+}
+
+.text-field{
+    -fx-font-family: "Montserrat";
 }
