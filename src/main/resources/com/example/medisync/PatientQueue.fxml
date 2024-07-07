@@ -4,14 +4,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1280.0" stylesheets="@patientqueue.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medisync.PatientQueueController">
@@ -83,271 +81,28 @@
             </AnchorPane>
             <AnchorPane layoutX="324.0" layoutY="4.0" prefHeight="963.0" prefWidth="971.0" style="-fx-background-color: white;">
                <children>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="63.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="63.0" layoutY="60.0" text="Specialist">
+                  <Label layoutX="63.0" layoutY="60.0" text="QUEUE">
                      <font>
                         <Font name="System Bold" size="48.0" />
                      </font>
                   </Label>
-                  <Label layoutX="80.0" layoutY="198.0" text="Orthodopedist">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="105.0" layoutY="256.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="106.0" layoutY="343.0" text="Remaining Time:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="114.0" layoutY="369.0" text="00:00:00">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="263.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="280.0" layoutY="198.0" text="Dermatologist">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="305.0" layoutY="256.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="306.0" layoutY="343.0" text="Remaining Time:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="314.0" layoutY="369.0" text="00:00:00">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="463.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="496.0" layoutY="197.0" text="Pediatrician">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="505.0" layoutY="256.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="506.0" layoutY="343.0" text="Remaining Time:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="514.0" layoutY="369.0" text="00:00:00">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="663.0" layoutY="184.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="710.0" layoutY="196.0" text="OB-GYN">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="705.0" layoutY="256.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="706.0" layoutY="343.0" text="Remaining Time:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="714.0" layoutY="369.0" text="00:00:00">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="64.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="93.0" layoutY="463.0" text="Cardiologist">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="106.0" layoutY="522.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="107.0" layoutY="609.0" text="Remaining Time:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="115.0" layoutY="635.0" text="00:00:00">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="264.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="278.0" layoutY="467.0" text="Gastroenterologists">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="306.0" layoutY="522.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="315.0" layoutY="635.0" text="00:00:00">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="464.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="499.0" layoutY="464.0" text="Psychiatrist">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="499.0" layoutY="523.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="507.0" layoutY="609.0" text="Remaining Time:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="515.0" layoutY="635.0" text="00:00:00">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="241.9" layoutX="664.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="182.97">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6421052813529968" green="0.6421052813529968" blue="0.6421052813529968" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="691.0" layoutY="469.0" text="Family Medicine&#10;" textAlignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="706.0" layoutY="522.0" text="Status:&#10;Occupied&#10;" textAlignment="CENTER">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="707.0" layoutY="609.0" text="Remaining Time:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="715.0" layoutY="635.0" text="00:00:00">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="303.0" layoutY="608.0" text="Remaining Time:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="23.0" layoutY="712.0" text="Patients in Line:">
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Label>
-                  <AnchorPane layoutX="110.0" layoutY="752.0" prefHeight="189.0" prefWidth="771.0">
-                     <children>
-                        <ScrollPane layoutX="-7.0" layoutY="3.0" prefHeight="174.0" prefWidth="771.0">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="170.0" prefWidth="772.0" fx:id="draggablePane">
-                                 <children>
-                                    <Rectangle arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="95.0" layoutX="40.0" layoutY="38.0" stroke="BLACK" strokeType="INSIDE" width="237.0" />
-                                    <Label layoutX="51.0" layoutY="70.0" opacity="0.24" text="Booked: Cardiologist">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="51.0" layoutY="97.0" opacity="0.24" text="ID: 123456">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </AnchorPane>
+                  <TableView fx:id="doctorQueueTable" layoutX="63.0" layoutY="155.0" prefHeight="350.0" prefWidth="854.0">
+                    <columns>
+                      <TableColumn fx:id="doctorNameColumn" prefWidth="224.79998779296875" text="Doctor Name" />
+                      <TableColumn fx:id="specializationColumn" minWidth="0.0" prefWidth="234.39999389648438" text="Specialization" />
+                        <TableColumn fx:id="availabilityColumn" prefWidth="183.99993896484375" text="Availability" />
+                        <TableColumn fx:id="remainingTimeColumn" prefWidth="212.7999267578125" text="Remaining Time " />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="patientQueueTable" layoutX="63.0" layoutY="554.0" prefHeight="330.0" prefWidth="854.0">
+                    <columns>
+                      <TableColumn fx:id="appointmentDateColumn" prefWidth="195.19998168945312" text="Appointment Date" />
+                      <TableColumn fx:id="bookedTimeColumn" prefWidth="157.5999755859375" text="Booked Time" />
+                        <TableColumn fx:id="patientNameColumn" prefWidth="202.4000244140625" text="Patient Name" />
+                        <TableColumn fx:id="pSpecialization" prefWidth="155.99993896484375" text="Specialization" />
+                        <TableColumn fx:id="actionColumn" prefWidth="147.199951171875" text="Action" />
+                    </columns>
+                  </TableView>
                </children>
             </AnchorPane>
          </children>
