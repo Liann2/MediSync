@@ -73,6 +73,7 @@ public class Appointment {
     public void setPref_specialization(String pref_specialization) {
         this.pref_specialization.set(pref_specialization);
     }
+
     public StringProperty appointmentTimeProperty() {
         return new SimpleStringProperty(appointment_time.toString());
     }

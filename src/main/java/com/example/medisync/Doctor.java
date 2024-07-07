@@ -6,10 +6,20 @@ import javafx.beans.property.StringProperty;
 public class Doctor {
     private StringProperty name;
     private StringProperty specialization;
+    private StringProperty availability;
+    private StringProperty remainingTime;
 
     public Doctor(String name, String specialization) {
         this.name = new SimpleStringProperty(name);
         this.specialization = new SimpleStringProperty(specialization);
+    }
+
+    // New constructor DoctorA
+    public Doctor(String name, String specialization, String availability, String remainingTime) {
+        this.name = new SimpleStringProperty(name);
+        this.specialization = new SimpleStringProperty(specialization);
+        this.availability = new SimpleStringProperty(availability);
+        this.remainingTime = new SimpleStringProperty(remainingTime);
     }
 
     public String getName() {
@@ -34,5 +44,29 @@ public class Doctor {
 
     public void setSpecialization(String specialization) {
         this.specialization.set(specialization);
+    }
+
+    public String getAvailability() {
+        return availability.get();
+    }
+
+    public StringProperty availabilityProperty() {
+        return availability;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability.set(availability);
+    }
+
+    public String getRemainingTime() {
+        return remainingTime.get();
+    }
+
+    public StringProperty remainingTimeProperty() {
+        return remainingTime;
+    }
+
+    public void setRemainingTime(String remainingTime) {
+        this.remainingTime.set(remainingTime);
     }
 }
