@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -71,7 +72,11 @@ public class DashboardController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientTablePopUp.fxml"));
             Parent root1 = (Parent) loader.load();
             Stage stage1 = new Stage();
+
+            Image icon = new Image(getClass().getResourceAsStream("/com/example/medisync/Images/MediSyncIcon.png"));
+            stage1.getIcons().add(icon);
             stage1.setTitle("Patient Database");
+
             stage1.setScene(new Scene(root1));
             stage1.show();
         } catch (IOException e) {

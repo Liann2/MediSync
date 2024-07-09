@@ -3,3 +3,32 @@
     -fx-font-family: 'Montserrat';
     -fx-font-weight: bold;
 }
+
+/* Styling for labels */
+.label {
+    -fx-font-family: "Montserrat";
+}
+
+/* Styling for table columns */
+.table-column .label {
+    -fx-background-color: #185EAF;
+    -fx-text-fill: white;
+}
+
+/* Styling for the table view background */
+.table-view {
+    -fx-background-color: #C0C0C0;
+    -fx-text-fill: white;
+}
+
+.button{
+    -fx-background-color:  #185EAF;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #FFFF;
+    -fx-font-weight: bold;
+}
+.text-field{
+    -fx-font-family: 'Montserrat';
+    -fx-border-radius: 15;
+}
+
