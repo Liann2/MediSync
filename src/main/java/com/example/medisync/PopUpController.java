@@ -3,10 +3,12 @@ package com.example.medisync;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
@@ -53,6 +55,11 @@ public class PopUpController implements Initializable {
     @FXML
     private TableColumn<Patient, String> phoneNumberColumn;
 
+    @FXML
+    private TextField searchField;
+
+    private ObservableList<Patient> patientList = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setupPatientTableView();
@@ -69,6 +76,8 @@ public class PopUpController implements Initializable {
         familyHistoryColumn.setCellValueFactory(new PropertyValueFactory<>("familyHistory"));
         homeAddressColumn.setCellValueFactory(new PropertyValueFactory<>("homeAddress"));
         phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
+        PatientTableView.setItems(patientList);
     }
 
     // Function to fetch patients from database and populate table
@@ -104,12 +113,34 @@ public class PopUpController implements Initializable {
             }
         };
 
-        task.setOnSucceeded(e -> PatientTableView.setItems(task.getValue()));
+        task.setOnSucceeded(e -> {
+            patientList.clear();
+            patientList.addAll(task.getValue());
+        });
         task.setOnFailed(e -> {
             Throwable exception = task.getException();
             exception.printStackTrace();
         });
 
         new Thread(task).start();
+    }
+
+    @FXML
+    private void searchPatients(ActionEvent event) {
+        String searchQuery = searchField.getText().toLowerCase();
+
+        if (searchQuery.isEmpty()) {
+            PatientTableView.setItems(patientList);
+        } else {
+            ObservableList<Patient> filteredList = FXCollections.observableArrayList();
+
+            for (Patient patient : patientList) {
+                if (patient.getFullName().toLowerCase().contains(searchQuery)) {
+                    filteredList.add(patient);
+                }
+            }
+
+            PatientTableView.setItems(filteredList);
+        }
     }
 }

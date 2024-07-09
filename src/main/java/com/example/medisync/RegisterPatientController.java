@@ -22,7 +22,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-
 public class RegisterPatientController implements Initializable {
 
     @FXML
@@ -42,7 +41,6 @@ public class RegisterPatientController implements Initializable {
     @FXML
     private DatePicker birthdateField;
 
-
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -52,12 +50,10 @@ public class RegisterPatientController implements Initializable {
     private int confirmedId;
     private String patientName;
 
-
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> list = FXCollections.observableArrayList("A", "B", "O", "AB");
         bloodTypeField.setItems(list);
     }
-
 
     public void logoutUser(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -73,7 +69,6 @@ public class RegisterPatientController implements Initializable {
             stage.show();
         }
     }
-
 
     public void switchToAppointmentScheduler(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("AppointmentScheduler.fxml"));
@@ -111,7 +106,6 @@ public class RegisterPatientController implements Initializable {
         String homeAddress = homeAddressField.getText();
         String phoneNo = phoneNoField.getText().replaceAll("\\s", "");
 
-
         if(maleButton.isSelected()){
             sex = "M";
         }
@@ -119,7 +113,7 @@ public class RegisterPatientController implements Initializable {
             sex = "F";
         }
 
-// Retrieve selected checkboxes and build the family history string
+        // Retrieve selected checkboxes and build the family history string
         StringBuilder familyHistoryBuilder = new StringBuilder();
 
         if (diabetesCb.isSelected()) {
@@ -156,8 +150,6 @@ public class RegisterPatientController implements Initializable {
             familyHistory = familyHistory.substring(0, familyHistory.length() - 2);
         }
 
-
-
         // Display retrieved data (for testing)
         System.out.println("Patient ID: " + patientId);
         System.out.println("Full Name: " + fullName);
@@ -169,11 +161,18 @@ public class RegisterPatientController implements Initializable {
         System.out.println("Home Address: " + homeAddress);
         System.out.println("Phone Number: " + phoneNo);
 
+        // Validate the birthdate
+        if (validateBirthdate(birthdate)) {
+            // Insert into the database
+            insertPatientIntoDatabase(patientId, fullName, age, birthdate, bloodType, sex, familyHistory, homeAddress, phoneNo);
+        } else {
+            // Show error alert for invalid birthdate
+            showErrorAlert("Error", "Invalid Birthdate", "The birthdate cannot be beyond the current date.");
+        }
+    }
 
-
-
-        //PUT THESE INTO THE DATABASE
-        insertPatientIntoDatabase(patientId, fullName, age, birthdate, bloodType, sex, familyHistory, homeAddress, phoneNo);
+    private boolean validateBirthdate(LocalDate birthdate) {
+        return birthdate.isBefore(LocalDate.now()) || birthdate.isEqual(LocalDate.now());
     }
 
     private void insertPatientIntoDatabase(int patientId, String fullName, int age, LocalDate birthdate, String bloodType,
@@ -208,9 +207,6 @@ public class RegisterPatientController implements Initializable {
                 showErrorAlert("Error", "Duplicate Entry", "A patient with this ID already exists in the database.");
             }
         }
-
-
-
     }
 
     private void showSuccessAlert(String title, String header, String content) {
@@ -233,7 +229,5 @@ public class RegisterPatientController implements Initializable {
         fullNameField.clear();
         patientIdField.clear();
         ageField.clear();
-
     }
 }
-

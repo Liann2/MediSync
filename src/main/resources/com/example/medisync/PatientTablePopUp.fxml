@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="497.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medisync.PopUpController">
+<AnchorPane prefHeight="605.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medisync.PopUpController">
     <children>
-        <TableView fx:id="PatientTableView" layoutX="17.0" layoutY="106.0" prefHeight="385.0" prefWidth="834.0">
+        <TextField fx:id="searchField" layoutX="17.0" layoutY="104.0" prefHeight="25.0" prefWidth="200.0" promptText="Search by Name" />
+        <Button fx:id="searchButton" layoutX="225.0" layoutY="104.0" mnemonicParsing="false" onAction="#searchPatients" stylesheets="@patientTablePopUpStyles.css" text="Search" />
+        <TableView fx:id="PatientTableView" layoutX="17.0" layoutY="146.0" prefHeight="430.0" prefWidth="834.0" stylesheets="@patientTablePopUpStyles.css">
             <columns>
                 <TableColumn fx:id="patientIDColumn" prefWidth="58.4000244140625" text="ID" />
                 <TableColumn fx:id="fNameColumn" prefWidth="92.0" text="Name" />
@@ -20,6 +24,6 @@
                 <TableColumn fx:id="ageColumn" prefWidth="90.4000244140625" text="Age" />
             </columns>
         </TableView>
-        <Label fx:id="titleLabel" layoutX="17.0" layoutY="25.0" prefHeight="47.0" prefWidth="193.0" stylesheets="@patientTablePopUpStyles.css" text="Patient Data" />
+        <Label fx:id="titleLabel" layoutX="17.0" layoutY="24.0" prefHeight="25.0" prefWidth="200.0" stylesheets="@patientTablePopUpStyles.css" text="Patient Data" />
     </children>
 </AnchorPane>

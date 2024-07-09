@@ -64,15 +64,12 @@ public class PatientQueueController implements Initializable {
     private TableColumn<Appointment, StringProperty> pSpecializationColumn;
     @FXML
     private TableColumn<Appointment, Void> actionColumn;
+
     private ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
-
-
 
     private Stage stage;
     private Scene scene;
     private Parent root;
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -143,7 +140,7 @@ public class PatientQueueController implements Initializable {
                 String name = resultSet.getString("name");
                 String specialization = resultSet.getString("specialization");
                 String availability = "Available"; // Placeholder for availability
-                String remainingTime = "10 mins"; // Placeholder for remaining time
+                String remainingTime = "00:00"; // Placeholder for remaining time
 
                 doctorList.add(new Doctor(name, specialization, availability, remainingTime));
             }
@@ -217,6 +214,8 @@ public class PatientQueueController implements Initializable {
     }
 
     private void assignPatientToDoctor(Appointment appointment) {
+        boolean doctorAssigned = false; // Flag to check if a doctor is assigned
+
         for (Doctor doctor : doctorList) {
             if (doctor.getSpecialization().equals(appointment.getPref_specialization()) && doctor.getAvailability().equals("Available")) {
                 // Assign patient to doctor
@@ -227,15 +226,22 @@ public class PatientQueueController implements Initializable {
                 System.out.println("Assigned patient " + appointment.getFull_name() + " to doctor " + doctor.getName());
 
                 // Remove from UI immediately
-                appointmentList.remove(appointment);
+                appointmentList.remove(appointment) ;
 
                 // Schedule removal from database based on appointment time
                 scheduleAppointmentRemoval(appointment, doctor);
 
-                break;
+                doctorAssigned = true; // Doctor assigned successfully
+                break; // Exit the loop once a doctor is assigned
             }
         }
+
+        // Show error alert if no doctor is assigned
+        if (!doctorAssigned) {
+            showErrorAlert("Error", "All doctors of this specialization are occupied.");
+        }
     }
+
 
 
     private void scheduleAppointmentRemoval(Appointment appointment, Doctor doctor) {
@@ -280,23 +286,6 @@ public class PatientQueueController implements Initializable {
 
 
 
-    private long calculateSecondsUntilAppointment(LocalDate appointmentDate, LocalTime appointmentTime) {
-        LocalDate currentDate = LocalDate.now();
-        LocalTime currentTime = LocalTime.now();
-
-        long secondsUntilAppointment = 0;
-
-        if (currentDate.isBefore(appointmentDate) || (currentDate.equals(appointmentDate) && currentTime.isBefore(appointmentTime))) {
-            // Calculate time difference in seconds
-            long currentSeconds = currentDate.toEpochDay() * 86400 + currentTime.toSecondOfDay();
-            long appointmentSeconds = appointmentDate.toEpochDay() * 86400 + appointmentTime.toSecondOfDay();
-
-            secondsUntilAppointment = appointmentSeconds - currentSeconds;
-        }
-
-        return secondsUntilAppointment;
-    }
-
 
 
     private void removeAppointmentFromDatabase(Appointment appointment) {
@@ -307,6 +296,9 @@ public class PatientQueueController implements Initializable {
             statement.executeUpdate(query);
             statement.close();
             connection.close();
+
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -367,4 +359,12 @@ public class PatientQueueController implements Initializable {
         // Load the CSS for styling after scene is initialized
         scene.getStylesheets().add(getClass().getResource("PatientQueueStyles.css").toExternalForm());
     }
+    private void showErrorAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }
