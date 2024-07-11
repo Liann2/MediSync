@@ -133,7 +133,6 @@ public class PopUpController implements Initializable {
             PatientTableView.setItems(patientList);
         } else {
             ObservableList<Patient> filteredList = FXCollections.observableArrayList();
-
             for (Patient patient : patientList) {
                 if (patient.getFullName().toLowerCase().contains(searchQuery)) {
                     filteredList.add(patient);

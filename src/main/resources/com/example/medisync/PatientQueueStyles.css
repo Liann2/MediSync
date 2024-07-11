@@ -1,6 +1,7 @@
 /* Apply to all buttons */
 .button {
     -fx-background-radius: 20px; /* Rounded corners */
+    -fx-cursor: hand;
 }
 
 /* Specific styling for the appoint button */

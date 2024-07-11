@@ -1,6 +1,5 @@
 package com.example.medisync;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -18,7 +17,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 public class LoginController {
 
@@ -41,7 +39,6 @@ public class LoginController {
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
-
     public void loginUser(ActionEvent event) throws IOException {
         String enteredEmail = emailField.getText();
         String enteredPassword = passwordField.getText();
@@ -50,7 +47,6 @@ public class LoginController {
             showLoginError("Your login was denied.", "Please fill in both email and password fields.");
             return;
         }
-
         // Check credentials against database
         boolean authenticated = checkCredentials(enteredEmail, enteredPassword);
 
@@ -90,8 +86,6 @@ public class LoginController {
             return false;
         }
     }
-
-
     private void showLoginError(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Login Denied");
@@ -99,6 +93,4 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-
 }

@@ -16,7 +16,9 @@
 .button{
     -fx-background-color:  #ffff;
     -fx-background-radius: 20px;
+    -fx-cursor: hand;
 }
+
 
 
 /* Customize the ComboBox */

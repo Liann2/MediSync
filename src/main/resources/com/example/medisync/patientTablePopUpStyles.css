@@ -25,6 +25,7 @@
     -fx-background-color:  #185EAF;
     -fx-background-radius: 20px;
     -fx-text-fill: #FFFF;
+    -fx-cursor: hand;
     -fx-font-weight: bold;
 }
 .text-field{
