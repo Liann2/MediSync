@@ -30,6 +30,10 @@ import java.time.LocalTime;
 import java.util.ResourceBundle;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 
 public class PatientQueueController implements Initializable {
     private static final String URL = "jdbc:mysql://localhost:3306/medisync";
@@ -51,7 +55,7 @@ public class PatientQueueController implements Initializable {
     private ObservableList<Doctor> doctorList = FXCollections.observableArrayList();
 
 
-    //Hey chat, use these as referrence. They'll be called from the Database.
+    //PATIENT TABLE AND COLUMNS
     @FXML
     private TableView<Appointment> patientQueueTable;
     @FXML
@@ -98,6 +102,9 @@ public class PatientQueueController implements Initializable {
 
         loadAppointmentData();
 
+        //Automated appointing
+        startAutoAppointmentScheduler();
+
         // Center-align text in all appointment table columns
         patientQueueTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         appointmentDateColumn.setCellFactory(tc -> (TableCell<Appointment, LocalDate>) createCenterAlignedCell());
@@ -125,9 +132,6 @@ public class PatientQueueController implements Initializable {
             }
         };
     }
-
-
-
 
     private void loadDoctorData() {
         try {
@@ -284,10 +288,6 @@ public class PatientQueueController implements Initializable {
         }
     }
 
-
-
-
-
     private void removeAppointmentFromDatabase(Appointment appointment) {
         try {
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -304,11 +304,6 @@ public class PatientQueueController implements Initializable {
         }
     }
 
-
-
-
-
-
     public void logoutUser(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
@@ -323,6 +318,25 @@ public class PatientQueueController implements Initializable {
             stage.show();
         }
     }
+
+
+
+    private void checkForAppointmentsToAssign() {
+        LocalDate currentDate = LocalDate.now();
+        LocalTime currentTime = LocalTime.now();
+
+        for (Appointment appointment : appointmentList) {
+            if (appointment.getAppointment_date().isEqual(currentDate) && appointment.getAppointment_time().equals(currentTime)) {
+                assignPatientToDoctor(appointment);
+            }
+        }
+    }
+
+    private void startAutoAppointmentScheduler() {
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(() -> Platform.runLater(this::checkForAppointmentsToAssign), 0, 1, TimeUnit.MINUTES);
+    }
+
 
 
 

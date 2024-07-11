@@ -26,3 +26,7 @@
     -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%); /* Prompt text color */
     -fx-font-family: "Montserrat";
 }
+
+.button{
+    -fx-cursor: hand;
+}

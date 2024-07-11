@@ -50,29 +50,16 @@ public class Appointment {
         return appointment_date;
     }
 
-    public void setAppointment_date(LocalDate appointment_date) {
-        this.appointment_date = appointment_date;
-    }
 
     public LocalTime getAppointment_time() {
         return appointment_time;
     }
 
-    public void setAppointment_time(LocalTime appointment_time) {
-        this.appointment_time = appointment_time;
-    }
 
     public String getPref_specialization() {
         return pref_specialization.get();
     }
 
-    public StringProperty pref_specializationProperty() {
-        return pref_specialization;
-    }
-
-    public void setPref_specialization(String pref_specialization) {
-        this.pref_specialization.set(pref_specialization);
-    }
 
     public StringProperty appointmentTimeProperty() {
         // Ensure appointment_time is not null before converting to StringProperty
