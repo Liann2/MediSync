@@ -224,7 +224,7 @@ public class PatientQueueController implements Initializable {
             if (doctor.getSpecialization().equals(appointment.getPref_specialization()) && doctor.getAvailability().equals("Available")) {
                 // Assign patient to doctor
                 doctor.setAvailability("Occupied");
-                doctor.setRemainingTime("15 mins"); // Example remaining time
+                doctor.setRemainingTime("00:00"); // Example remaining time
 
                 // Print or log assignment for debugging purposes
                 System.out.println("Assigned patient " + appointment.getFull_name() + " to doctor " + doctor.getName());
@@ -290,6 +290,20 @@ public class PatientQueueController implements Initializable {
 
     private void removeAppointmentFromDatabase(Appointment appointment) {
         try {
+            // Find the doctor assigned to this appointment
+            Doctor assignedDoctor = null;
+            for (Doctor doctor : doctorList) {
+                if (doctor.getSpecialization().equals(appointment.getPref_specialization()) && doctor.getRemainingTime().equals("00:00")) {
+                    assignedDoctor = doctor;
+                    break;
+                }
+            }
+
+            if (assignedDoctor != null) {
+                // Make the assigned doctor available again upon completion of appointment
+                assignedDoctor.setAvailability("Available");
+            }
+
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
             String query = "DELETE FROM appointments WHERE appointment_id = " + appointment.getAppointment_id();
             Statement statement = connection.createStatement();
@@ -297,12 +311,11 @@ public class PatientQueueController implements Initializable {
             statement.close();
             connection.close();
 
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     public void logoutUser(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
