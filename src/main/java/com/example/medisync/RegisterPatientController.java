@@ -50,9 +50,17 @@ public class RegisterPatientController implements Initializable {
     private int confirmedId;
     private String patientName;
 
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> list = FXCollections.observableArrayList("A", "B", "O", "AB");
         bloodTypeField.setItems(list);
+
+        // Set the input length restriction for phoneNoField
+        phoneNoField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 11) {
+                phoneNoField.setText(oldValue);
+            }
+        });
     }
 
     public void logoutUser(ActionEvent event) throws IOException {
@@ -147,7 +155,7 @@ public class RegisterPatientController implements Initializable {
         // Remove the trailing comma and space if the string is not empty
         String familyHistory = familyHistoryBuilder.toString();
         if (familyHistory.endsWith(", ")) {
-            familyHistory = familyHistory.substring(0, familyHistory.length() - 2);
+             familyHistory = familyHistory.substring(0, familyHistory.length() - 2);
         }
 
         // Display retrieved data (for testing)
@@ -229,5 +237,20 @@ public class RegisterPatientController implements Initializable {
         fullNameField.clear();
         patientIdField.clear();
         ageField.clear();
+        birthdateField.setValue(null);
+        bloodTypeField.getSelectionModel().clearSelection();
+        maleButton.setSelected(false);
+        femaleButton.setSelected(false);
+        anemiaCb.setSelected(false);
+        asthmaCb.setSelected(false);
+        cancerCb.setSelected(false);
+        diabetesCb.setSelected(false);
+        heartDiseaseCb.setSelected(false);
+        hypertensionCb.setSelected(false);
+        strokeCb.setSelected(false);
+        liverDiseaseCb.setSelected(false);
+        kidneyDiseaseCb.setSelected(false);
+        homeAddressField.clear();
+        phoneNoField.clear();
     }
 }

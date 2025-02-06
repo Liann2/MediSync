@@ -17,7 +17,7 @@
 
 /* Customize the TextField when focused */
 .text-field:focused {
-    -fx-border-color: #4A90E2; /* Border color when focused */
+    -fx-border-color: #4A90E2;
 }
 
 
